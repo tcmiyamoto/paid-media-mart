@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: int_ad_spend__unioned
+    description: "Daily campaign spend from all three ad platforms in one table. Grain: date x platform x campaign."
+  - name: int_signups__channel_classified
+    description: "Signups with a channel assigned from the UTM mapping table, falling back to Direct, Referral, or Other. ad_platform links paid signups to campaigns."

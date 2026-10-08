@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_google_ads__spend
+    description: "Google Ads daily campaign spend. Renames to the shared spend schema and converts cost_micros to USD."
+  - name: stg_meta_ads__spend
+    description: "Meta Ads daily campaign spend, renamed to the shared spend schema."
+  - name: stg_linkedin_ads__spend
+    description: "LinkedIn Ads daily campaign spend, renamed to the shared spend schema."
+  - name: stg_app__signups
+    description: "One row per signup. UTM source and medium are lowercased and trimmed; blanks become '(none)'."
