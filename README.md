@@ -255,6 +255,34 @@ into May and June, before the spend data starts, so pipeline per dollar is sligh
 for channels with early touches. Pipeline per dollar also mixes PLG campaigns, which create no
 pipeline, with SLG campaigns; slice `fct_attribution` by motion for a cleaner read.
 
+## Semantic layer (LookML)
+
+`lookml/` defines the Looker layer over the marts: two explores, five views, and project
+constants for the BigQuery project and dataset. The code is written and checked but not
+deployed, since this project has no Looker instance.
+
+| Explore | Base view | What it answers |
+|---|---|---|
+| `attribution` | `fct_attribution` | Leads, pipeline, and won ARR by channel or campaign under any attribution model |
+| `lead_funnel` | `fct_leads` | Single-touch funnel and conversion rates by product line, motion, channel, and campaign |
+
+**Design decisions**
+
+- **One set of measures, any attribution model.** An `attribution_model` parameter (unquoted)
+  picks the credit column with Liquid, so `attributed_pipeline` and the other measures switch
+  models from a single filter instead of needing four copies.
+- **Spend can't fan out.** Spend is joined at channel grain to touch-level rows. The
+  `channel_spend` view has a primary key, so Looker uses symmetric aggregates and counts each
+  channel's spend once. Without it, LinkedIn's $76K spend would show as $54.7M: once per touch.
+- **Spend ignores date filters** (noted in the field description), because a touch date filter
+  on spend would mix two different periods.
+
+**How it was checked.** All files parse with the `lkml` parser, every `${field}` reference and
+join resolves, and the SQL Looker generates for the `attribution` explore (including the
+symmetric-aggregate spend) was run against BigQuery. It matches `rpt_attribution_by_channel`
+exactly. For example, LinkedIn under first touch: 286 leads, $3.26M pipeline, $42.84 pipeline
+per spend dollar.
+
 ## Results (Jul 1 to Sep 30, 2026)
 
 | Channel | Spend | Signups | CAC |
