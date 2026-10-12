@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_crm__leads
+    description: "One row per lead. landing_form is the entry point (free_trial, talk_to_sales, working_session); motion and product_line come from it."
+    columns:
+      - name: lead_id
+        data_tests: [unique, not_null]
+      - name: motion
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['plg', 'slg']
+      - name: product_line
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['core', 'new_product']
+      - name: landing_form
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['free_trial', 'talk_to_sales', 'working_session']
+
+  - name: stg_crm__funnel_events
+    description: "One row per lead per stage reached."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [lead_id, stage]
+    columns:
+      - name: lead_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_crm__leads')
+                field: lead_id

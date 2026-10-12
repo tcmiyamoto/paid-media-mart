@@ -1,0 +1,10 @@
+motion,stage,stage_order,funnel_stage,description
+plg,trial_started,1,lead,Started a free trial
+plg,activated,2,qualified,Connected a data source during the trial (product-qualified lead)
+plg,converted_paid,3,won,Converted to a paid plan
+slg,lead_created,1,lead,Submitted a sales form
+slg,meeting_booked,2,engaged,Booked a meeting through the scheduler
+slg,meeting_held,3,qualified,Attended the meeting and was accepted by sales (SQL)
+slg,opportunity_created,4,opportunity,Sales opened an opportunity with an amount
+slg,closed_won,5,won,Signed
+slg,closed_lost,5,lost,Opportunity lost

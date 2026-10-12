@@ -1,0 +1,13 @@
+platform,campaign_id,product_line,motion,landing_form
+google,18234567801,core,slg,talk_to_sales
+google,18234567802,core,plg,free_trial
+google,18234567803,core,slg,talk_to_sales
+google,18234567804,core,plg,free_trial
+google,18234567805,core,plg,free_trial
+meta,120210000000001,core,plg,free_trial
+meta,120210000000002,core,plg,free_trial
+meta,120210000000003,core,slg,talk_to_sales
+meta,120210000000004,core,plg,free_trial
+linkedin,612345001,new_product,slg,working_session
+linkedin,612345002,new_product,slg,working_session
+linkedin,612345003,core,slg,talk_to_sales

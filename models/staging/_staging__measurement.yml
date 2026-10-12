@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_measurement__incrementality_tests
+    description: "Test registry: one row per incrementality test (geo holdout, platform lift, on/off). Grain: test_id."
+    columns:
+      - name: test_id
+        data_tests: [unique, not_null]
+      - name: channel_name
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_channel')
+                field: channel_name
+      - name: method
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['geo_did', 'geo_on_off', 'platform_lift', 'audience_holdout', 'observed_lift']
+      - name: attributed_conversions
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: false
