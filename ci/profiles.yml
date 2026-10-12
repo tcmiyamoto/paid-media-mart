@@ -1,0 +1,21 @@
+# Profiles for GitHub Actions. Credentials come from google-github-actions/auth, which sets
+# Application Default Credentials, so the oauth method picks them up with no key file here.
+paid_media_mart:
+  target: ci
+  outputs:
+    prod:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT') }}"
+      dataset: dbt_prod
+      location: US
+      threads: 4
+      job_execution_timeout_seconds: 300
+    ci:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT') }}"
+      dataset: dbt_ci
+      location: US
+      threads: 4
+      job_execution_timeout_seconds: 300

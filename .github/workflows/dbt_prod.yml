@@ -1,0 +1,51 @@
+# Production build: runs on every push to main (and weekly, so the saved manifest never
+# expires). Builds everything into the dbt_prod dataset and saves manifest.json, which
+# pull request CI compares against to find what changed.
+name: dbt prod
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 14 * * 1"   # Mondays 14:17 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: dbt-prod
+  cancel-in-progress: false
+
+env:
+  GCP_PROJECT: mktg-portfolio
+  DBT_PROFILES_DIR: ci
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ci/requirements.txt
+
+      - name: Install dbt
+        run: pip install -r ci/requirements.txt
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: dbt deps
+        run: dbt deps
+
+      - name: dbt build (prod)
+        run: dbt build --target prod
+
+      - name: Save production manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: prod-manifest
+          path: target/manifest.json
+          retention-days: 90

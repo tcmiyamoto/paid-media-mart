@@ -300,6 +300,26 @@ per spend dollar.
 
 ROAS uses first-month plan revenue only, so it understates lifetime return.
 
+## CI/CD: slim CI with dbt state
+
+Two GitHub Actions workflows keep production current and test pull requests cheaply.
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `dbt_prod.yml` | push to `main`, weekly | `dbt build` into the `dbt_prod` dataset, then saves `manifest.json` as an artifact |
+| `dbt_ci.yml` | pull request | Downloads the latest production manifest and runs `dbt build --select state:modified+ --defer --state` into `dbt_ci` |
+
+- **`state:modified+`** compares the PR's code to the production manifest and selects only
+  changed models, seeds, and tests plus everything downstream. Changing `fct_attribution`
+  runs 2 of 27 models and 13 of 89 tests.
+- **`--defer`** reads unchanged upstream models from production instead of rebuilding them, so
+  CI doesn't recompute the whole project to test one change.
+- If no production manifest exists yet (first run, or the artifact expired), CI falls back to
+  a full build. The weekly production run keeps the artifact from expiring.
+- Credentials: a service account with BigQuery Data Editor and Job User roles, stored as the
+  `GCP_SA_KEY` secret. `ci/profiles.yml` uses Application Default Credentials, so no key file is
+  committed. Workload Identity Federation would remove the stored key entirely.
+
 ## Run it
 
 ```bash

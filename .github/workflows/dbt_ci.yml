@@ -1,0 +1,70 @@
+# Slim CI for pull requests: builds and tests only the models, seeds, and tests that changed
+# in the PR plus everything downstream of them (state:modified+). Unchanged upstream models
+# are read from production (--defer), so a one-model change runs in seconds instead of
+# rebuilding the project. Falls back to a full build if no production manifest exists yet.
+name: dbt CI
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: dbt-ci
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  GCP_PROJECT: mktg-portfolio
+  DBT_PROFILES_DIR: ci
+
+jobs:
+  slim-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ci/requirements.txt
+
+      - name: Install dbt
+        run: pip install -r ci/requirements.txt
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: dbt deps
+        run: dbt deps
+
+      - name: Download latest production manifest
+        id: prod_state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow dbt_prod.yml --branch main \
+            --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+          if [ -n "$run_id" ] && gh run download "$run_id" --repo "$GITHUB_REPOSITORY" \
+               --name prod-manifest --dir prod-state; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No production manifest found; running a full build."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Show what changed
+        if: steps.prod_state.outputs.found == 'true'
+        run: dbt ls --select state:modified+ --state prod-state --resource-type model seed test
+
+      - name: dbt build (changed models only)
+        if: steps.prod_state.outputs.found == 'true'
+        run: dbt build --select state:modified+ --defer --state prod-state --target ci
+
+      - name: dbt build (full, no production manifest yet)
+        if: steps.prod_state.outputs.found != 'true'
+        run: dbt build --target ci
