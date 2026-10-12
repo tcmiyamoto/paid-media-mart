@@ -57,3 +57,4 @@ join {{ ref('dim_channel') }} ch
     on a.channel_key = ch.channel_key
 left join spend s
     on a.channel_key = s.channel_key
+-- slim CI test
