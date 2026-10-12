@@ -22,6 +22,8 @@ Built-in messiness, handled in the dbt models:
   - Touches after the opportunity is created, and post-trial onboarding emails, are
     included; the attribution window has to exclude them.
   - Sessions from visitors who never convert.
+
+Retargeting campaigns never start a journey: they appear only after an earlier visit.
 """
 
 import csv
@@ -40,6 +42,13 @@ LANDING_PAGE = {"free_trial": "/signup", "talk_to_sales": "/contact-sales",
 
 GOOGLE_PLG = ["18234567802", "18234567804", "18234567805"]
 META_PLG = ["120210000000001", "120210000000002", "120210000000004"]
+LINKEDIN_PROSPECTING = ["612345001", "612345002"]
+
+# Retargeting only reaches people who have already visited, so it is never a journey's first
+# touch. For SLG journeys, later pre-lead visits are sometimes retargeting clicks.
+RETARGETING = [("linkedin", "paid_social", "612345003", "/customers"),
+               ("facebook", "paid_social", "120210000000003", "/")]
+RETARGETING_SHARE = 0.20
 
 # Pre-lead touch options by journey type: (weight, source, medium, campaign ids, landing page)
 PRE_LEAD = {
@@ -52,21 +61,20 @@ PRE_LEAD = {
         (0.05, "newsletter", "email", [""], "/blog"),
     ],
     "core_slg": [
-        (0.30, "linkedin", "paid_social", ["612345003"], "/customers"),
+        (0.30, "linkedin", "paid_social", LINKEDIN_PROSPECTING, "/customers"),
         (0.20, "google", "organic", [""], "/blog"),
         (0.15, "g2.com", "referral", [""], "/compare"),
         (0.12, "", "", [""], "/"),
-        (0.08, "facebook", "paid_social", ["120210000000003"], "/"),
+        (0.08, "facebook", "paid_social", META_PLG, "/"),
         (0.10, "google", "cpc", ["18234567803"], "/pricing"),
         (0.05, "newsletter", "email", [""], "/blog"),
     ],
     "new_product_slg": [
-        (0.45, "linkedin", "paid_social", ["612345001", "612345002"], "/new-product"),
+        (0.55, "linkedin", "paid_social", LINKEDIN_PROSPECTING, "/new-product"),
         (0.12, "google", "organic", [""], "/blog"),
         (0.13, "", "", [""], "/"),
         (0.08, "g2.com", "referral", [""], "/compare"),
         (0.12, "newsletter", "email", [""], "/new-product"),
-        (0.10, "linkedin", "paid_social", ["612345003"], "/customers"),
     ],
 }
 
@@ -174,12 +182,14 @@ def main():
         # Earlier anonymous visits.
         n_pre = count_from(PRE_LEAD_COUNT[journey])
         offsets = sorted((random.uniform(0.5, LOOKBACK_DAYS[journey]) for _ in range(n_pre)), reverse=True)
-        for days in offsets:
+        for i, days in enumerate(offsets):
             _, source, medium, campaigns, page = weighted(PRE_LEAD[journey])
+            campaign = random.choice(campaigns)
+            if i > 0 and lead["motion"] == "slg" and random.random() < RETARGETING_SHARE:
+                source, medium, campaign, page = random.choice(RETARGETING)
             second_device = random.random() < 0.15
             pid = new_pseudo_id() if second_device or not tracked else main_id
-            add_session(pid, created - timedelta(days=days), source, medium,
-                        random.choice(campaigns), page)
+            add_session(pid, created - timedelta(days=days), source, medium, campaign, page)
 
         # The visit where the form was submitted, and the identity it creates.
         if tracked:
