@@ -12,7 +12,7 @@ models:
           - accepted_values:
               arguments:
                 values: ['Paid Search', 'Paid Social - Meta', 'Paid Social - LinkedIn',
-                         'Organic Search', 'Email', 'Direct', 'Referral', 'Other']
+                         'Organic Search', 'Email', 'Events', 'Direct', 'Referral', 'Other']
 
   - name: dim_campaign
     columns:

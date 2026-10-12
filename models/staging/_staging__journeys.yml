@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_web__sessions
+    description: "One row per web session (GA4-style export) with cleaned UTMs. Includes visitors who never convert."
+    columns:
+      - name: session_id
+        data_tests: [unique, not_null]
+      - name: user_pseudo_id
+        data_tests: [not_null]
+
+  - name: stg_web__identities
+    description: "Links a web visitor ID to a CRM lead, set when the visitor submits a form."
+    columns:
+      - name: user_pseudo_id
+        data_tests: [unique, not_null]
+      - name: lead_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_crm__leads')
+                field: lead_id
+
+  - name: stg_marketo__activities
+    description: "One row per Marketo activity for a known lead, deduplicated on activity_id."
+    columns:
+      - name: activity_id
+        data_tests: [unique, not_null]
+      - name: lead_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_crm__leads')
+                field: lead_id
+      - name: activity_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['email_clicked', 'webinar_attended']

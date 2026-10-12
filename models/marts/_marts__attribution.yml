@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: fct_attribution
+    description: "One row per touch in a lead's attribution window, with credit under first-touch, last-touch, linear, and position-based (W-shaped / U-shaped) models. Credits sum to 1 per lead per model; multiply outcome columns by a credit to get attributed amounts."
+    columns:
+      - name: touchpoint_id
+        data_tests: [unique, not_null]
+      - name: lead_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fct_leads')
+                field: lead_id
+      - name: channel_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_channel')
+                field: channel_key
+      - name: campaign_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_campaign')
+                field: campaign_key
+      - name: credit_position_based
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+  - name: rpt_attribution_by_channel
+    description: "Attributed leads, opportunities, pipeline, and won ARR by channel under each attribution model, with channel spend, cost per lead and opportunity, and pipeline per spend dollar."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [attribution_model, channel_name]

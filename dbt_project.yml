@@ -48,3 +48,21 @@ seeds:
         utm_medium: string
         utm_campaign: string
         revenue: numeric
+    leads:
+      +column_types:
+        utm_source: string
+        utm_medium: string
+        utm_campaign: string
+        click_id: string
+    funnel_events:
+      +column_types:
+        amount: numeric
+    web_sessions:
+      +column_types:
+        user_pseudo_id: string
+        source: string
+        medium: string
+        campaign: string
+    web_identities:
+      +column_types:
+        user_pseudo_id: string

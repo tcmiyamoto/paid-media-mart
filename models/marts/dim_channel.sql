@@ -11,7 +11,7 @@ select
     case
         when channel_name like 'Paid%'  then 'Paid'
         when channel_name = 'Direct'    then 'Direct'
-        when channel_name = 'Email'     then 'Owned'
+        when channel_name in ('Email', 'Events') then 'Owned'
         when channel_name = 'Other'     then 'Unclassified'
         else 'Organic'
     end as channel_group,

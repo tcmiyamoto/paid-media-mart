@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: int_touchpoints
+    description: "Every touch stitched to a lead from the CRM form fill, identified web sessions, and Marketo activities. in_attribution_window flags the touches attribution can credit."
+    columns:
+      - name: touchpoint_id
+        data_tests: [unique, not_null]
+      - name: touch_source
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['crm', 'web', 'marketo']
+      - name: channel
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_channel')
+                field: channel_name
