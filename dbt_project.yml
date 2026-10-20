@@ -48,15 +48,49 @@ seeds:
         utm_medium: string
         utm_campaign: string
         revenue: numeric
-    leads:
+    # Salesforce IDs and free-text fields are strings even when a column happens to be
+    # empty or numeric-looking (ad campaign IDs in UTMs, sparse custom fields).
+    sf_lead:
       +column_types:
-        utm_source: string
-        utm_medium: string
-        utm_campaign: string
-        click_id: string
-    funnel_events:
+        id: string
+        master_record_id: string
+        utm_source__c: string
+        utm_medium__c: string
+        utm_campaign__c: string
+        gclid__c: string
+        meeting_booked_date__c: timestamp
+        meeting_held_date__c: timestamp
+        converted_date: date
+        converted_account_id: string
+        converted_contact_id: string
+        converted_opportunity_id: string
+    sf_opportunity:
+      +column_types:
+        account_id: string
+        campaign_id: string
+        lead_source: string
+        amount: numeric
+    sf_opportunity_history:
       +column_types:
         amount: numeric
+    sf_contact:
+      +column_types:
+        lead_source: string
+    sf_campaign:
+      +column_types:
+        parent_id: string
+        product_line__c: string
+        utm_source__c: string
+        utm_medium__c: string
+        ad_platform__c: string
+        ad_campaign_id__c: string
+    sf_campaign_member:
+      +column_types:
+        lead_id: string
+        contact_id: string
+    app_trial_events:
+      +column_types:
+        arr: numeric
     web_sessions:
       +column_types:
         user_pseudo_id: string

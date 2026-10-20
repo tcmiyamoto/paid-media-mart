@@ -1,0 +1,22 @@
+id,name,type,status,is_active,start_date,parent_id,product_line__c,utm_source__c,utm_medium__c,ad_platform__c,ad_campaign_id__c,created_date,is_deleted,_fivetran_synced
+7018c0000000001QAB,Search - Brand,Paid Search,In Progress,true,2026-04-01,,core,google,cpc,google,18234567801,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000002QAB,Search - Nonbrand - Data Pipelines,Paid Search,In Progress,true,2026-04-01,,core,google,cpc,google,18234567802,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000003QAB,Search - Competitor,Paid Search,In Progress,true,2026-04-01,,core,google,cpc,google,18234567803,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000004QAB,PMax - Signups,Paid Search,In Progress,true,2026-04-01,,core,google,cpc,google,18234567804,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000005QAB,YouTube - Awareness,Paid Search,In Progress,true,2026-04-01,,core,google,cpc,google,18234567805,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000006QAB,Prospecting - Lookalike 1%,Paid Social,In Progress,true,2026-04-01,,core,meta,paid_social,meta,120210000000001,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000007QAB,Prospecting - Interest Stack,Paid Social,In Progress,true,2026-04-01,,core,meta,paid_social,meta,120210000000002,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000008QAB,Retargeting - Site Visitors 30d,Paid Social,In Progress,true,2026-04-01,,core,meta,paid_social,meta,120210000000003,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000009QAB,Instagram - Reels Test,Paid Social,In Progress,true,2026-04-01,,core,meta,paid_social,meta,120210000000004,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000010QAB,ABM - Data Eng Titles,Paid Social,In Progress,true,2026-04-01,,new_product,linkedin,paid_social,linkedin,612345001,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000011QAB,Thought Leadership - Doc Ads,Paid Social,In Progress,true,2026-04-01,,new_product,linkedin,paid_social,linkedin,612345002,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000012QAB,Retargeting - Website,Paid Social,In Progress,true,2026-04-01,,core,linkedin,paid_social,linkedin,612345003,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000013QAB,Inbound - Organic Search,Website,In Progress,true,2026-04-01,,,google,organic,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000014QAB,Inbound - Direct,Website,In Progress,true,2026-04-01,,,,,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000015QAB,Inbound - Review Sites,Referral,In Progress,true,2026-04-01,,,g2.com,referral,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000016QAB,Newsletter,Email,In Progress,true,2026-04-01,,,newsletter,email,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000017QAB,Nurture - Core,Email,In Progress,true,2026-04-01,,core,marketo,email,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000018QAB,Nurture - New Product,Email,In Progress,true,2026-04-01,,new_product,marketo,email,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000019QAB,Onboarding - Trial,Email,In Progress,true,2026-04-01,,core,marketo,email,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000020QAB,Webinar - Core Live Demo,Webinar,In Progress,true,2026-04-01,,core,marketo,webinar,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00
+7018c0000000021QAB,Webinar - New Product Live Demo,Webinar,In Progress,true,2026-04-01,,new_product,marketo,webinar,,,2026-04-01 09:00:00,false,2026-10-01 06:00:00

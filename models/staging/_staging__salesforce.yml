@@ -1,0 +1,169 @@
+version: 2
+
+models:
+  - name: stg_salesforce__lead
+    description: "One row per live Salesforce lead (merged duplicates removed). landing_form, motion, and product_line come from lead_source and product_interest__c. Email is hashed (email_hash) and the raw value dropped."
+    columns:
+      - name: lead_id
+        data_tests: [unique, not_null]
+      - name: motion
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['plg', 'slg']
+      - name: product_line
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['core', 'new_product']
+      - name: landing_form
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['free_trial', 'talk_to_sales', 'working_session']
+      - name: converted_opportunity_id
+        description: "Set when the lead converted. Every converted lead must point at a live opportunity."
+        data_tests:
+          - unique
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__opportunity')
+                field: opportunity_id
+      - name: converted_contact_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__contact')
+                field: contact_id
+
+  - name: stg_salesforce__account
+    description: "One row per live account. Created when a sales-led lead converts."
+    columns:
+      - name: account_id
+        data_tests: [unique, not_null]
+
+  - name: stg_salesforce__contact
+    description: "One row per live contact: converted leads and other members of the buying committee."
+    columns:
+      - name: contact_id
+        data_tests: [unique, not_null]
+      - name: account_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__account')
+                field: account_id
+
+  - name: stg_salesforce__opportunity
+    description: "One row per live opportunity. campaign_id is the Primary Campaign Source."
+    columns:
+      - name: opportunity_id
+        data_tests: [unique, not_null]
+      - name: account_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__account')
+                field: account_id
+      - name: campaign_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__campaign')
+                field: campaign_id
+      - name: stage_name
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Discovery', 'Evaluation', 'Proposal', 'Negotiation', 'Closed Won', 'Closed Lost']
+
+  - name: stg_salesforce__opportunity_history
+    description: "One row per opportunity stage change."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [opportunity_id, stage_name]
+    columns:
+      - name: history_id
+        data_tests: [unique, not_null]
+      - name: opportunity_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__opportunity')
+                field: opportunity_id
+
+  - name: stg_salesforce__opportunity_contact_role
+    description: "One row per contact on an opportunity (the buying committee)."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [opportunity_id, contact_id]
+    columns:
+      - name: opportunity_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__opportunity')
+                field: opportunity_id
+      - name: contact_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__contact')
+                field: contact_id
+
+  - name: stg_salesforce__campaign
+    description: "One row per campaign: ad campaigns (ad_platform, ad_campaign_id link to dim_campaign), inbound sources, and Marketo programs."
+    columns:
+      - name: campaign_id
+        data_tests: [unique, not_null]
+
+  - name: stg_salesforce__campaign_member
+    description: "One row per campaign membership, by lead, contact, or both."
+    columns:
+      - name: campaign_member_id
+        data_tests: [unique, not_null]
+      - name: campaign_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__campaign')
+                field: campaign_id
+      - name: lead_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__lead')
+                field: lead_id
+
+  - name: stg_app__trial_events
+    description: "Free trial lifecycle events from the product database."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [lead_id, event_type]
+    columns:
+      - name: event_id
+        data_tests: [unique, not_null]
+      - name: lead_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__lead')
+                field: lead_id
+      - name: event_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['trial_started', 'activated', 'converted_paid']

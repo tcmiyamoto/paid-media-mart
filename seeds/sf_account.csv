@@ -1,0 +1,243 @@
+id,name,website,industry,number_of_employees,segment__c,type,created_date,is_deleted,_fivetran_synced
+0018c0000000001QAB,Company 94062,company94062.example.com,Financial Services,15,15k-60k,Prospect,2026-07-08 03:47:15,false,2026-10-01 06:00:00
+0018c0000000002QAB,Company 15041,company15041.example.com,Manufacturing,257,15k-60k,Prospect,2026-07-13 17:56:33,false,2026-10-01 06:00:00
+0018c0000000003QAB,Company 95159,company95159.example.com,Software,178,60k-200k,Prospect,2026-07-12 05:15:46,false,2026-10-01 06:00:00
+0018c0000000004QAB,Company 40032,company40032.example.com,Software,120,200k-500k,Prospect,2026-07-13 05:43:20,false,2026-10-01 06:00:00
+0018c0000000005QAB,Company 88543,company88543.example.com,Media,135,15k-60k,Prospect,2026-07-11 16:07:43,false,2026-10-01 06:00:00
+0018c0000000006QAB,Company 58951,company58951.example.com,Software,30,11-50,Prospect,2026-07-11 13:17:37,false,2026-10-01 06:00:00
+0018c0000000007QAB,Company 18575,company18575.example.com,Software,86,<15k,Prospect,2026-07-12 23:48:12,false,2026-10-01 06:00:00
+0018c0000000008QAB,Company 16903,company16903.example.com,Financial Services,247,60k-200k,Prospect,2026-07-16 23:25:58,false,2026-10-01 06:00:00
+0018c0000000009QAB,Company 1005,company1005.example.com,Software,296,<15k,Prospect,2026-07-11 13:54:40,false,2026-10-01 06:00:00
+0018c0000000010QAB,Company 95123,company95123.example.com,Ecommerce,111,15k-60k,Prospect,2026-07-12 04:12:12,false,2026-10-01 06:00:00
+0018c0000000011QAB,Company 17700,company17700.example.com,Ecommerce,64,<15k,Prospect,2026-07-12 17:45:31,false,2026-10-01 06:00:00
+0018c0000000012QAB,Company 5984,company5984.example.com,Media,207,15k-60k,Prospect,2026-07-12 16:18:50,false,2026-10-01 06:00:00
+0018c0000000013QAB,Company 30503,company30503.example.com,Ecommerce,8,<15k,Prospect,2026-07-12 19:04:42,false,2026-10-01 06:00:00
+0018c0000000014QAB,Company 91987,company91987.example.com,Media,51,60k-200k,Prospect,2026-07-19 08:42:22,false,2026-10-01 06:00:00
+0018c0000000015QAB,Company 19278,company19278.example.com,Healthcare,6,2-10,Prospect,2026-07-17 12:58:53,false,2026-10-01 06:00:00
+0018c0000000016QAB,Company 91783,company91783.example.com,Ecommerce,220,60k-200k,Prospect,2026-07-21 10:30:58,false,2026-10-01 06:00:00
+0018c0000000017QAB,Company 15947,company15947.example.com,Financial Services,148,15k-60k,Prospect,2026-07-13 06:54:14,false,2026-10-01 06:00:00
+0018c0000000018QAB,Company 6812,company6812.example.com,Financial Services,30,11-50,Prospect,2026-07-16 10:42:29,false,2026-10-01 06:00:00
+0018c0000000019QAB,Company 38270,company38270.example.com,Ecommerce,146,15k-60k,Prospect,2026-07-19 11:39:42,false,2026-10-01 06:00:00
+0018c0000000020QAB,Company 9935,company9935.example.com,Healthcare,62,15k-60k,Prospect,2026-07-15 09:27:41,false,2026-10-01 06:00:00
+0018c0000000021QAB,Company 85406,company85406.example.com,Healthcare,43,60k-200k,Prospect,2026-07-20 18:23:11,false,2026-10-01 06:00:00
+0018c0000000022QAB,Company 21256,company21256.example.com,Software,34,<15k,Prospect,2026-07-17 09:22:59,false,2026-10-01 06:00:00
+0018c0000000023QAB,Company 8103,company8103.example.com,Manufacturing,170,<15k,Prospect,2026-07-18 05:19:44,false,2026-10-01 06:00:00
+0018c0000000024QAB,Company 78291,company78291.example.com,Media,212,60k-200k,Prospect,2026-07-16 08:04:52,false,2026-10-01 06:00:00
+0018c0000000025QAB,Company 41301,company41301.example.com,Manufacturing,81,<15k,Prospect,2026-07-19 19:45:21,false,2026-10-01 06:00:00
+0018c0000000026QAB,Company 19654,company19654.example.com,Healthcare,181,<15k,Prospect,2026-07-17 05:42:01,false,2026-10-01 06:00:00
+0018c0000000027QAB,Company 4626,company4626.example.com,Media,120,51-200,Prospect,2026-07-19 10:21:12,false,2026-10-01 06:00:00
+0018c0000000028QAB,Company 87090,company87090.example.com,Ecommerce,91,<15k,Prospect,2026-07-17 10:36:50,false,2026-10-01 06:00:00
+0018c0000000029QAB,Company 14982,company14982.example.com,Financial Services,109,60k-200k,Prospect,2026-07-18 15:25:51,false,2026-10-01 06:00:00
+0018c0000000030QAB,Company 75773,company75773.example.com,Healthcare,68,60k-200k,Prospect,2026-07-21 11:07:50,false,2026-10-01 06:00:00
+0018c0000000031QAB,Company 19435,company19435.example.com,Software,120,51-200,Prospect,2026-07-23 07:01:47,false,2026-10-01 06:00:00
+0018c0000000032QAB,Company 24828,company24828.example.com,Financial Services,44,<15k,Prospect,2026-07-25 02:49:08,false,2026-10-01 06:00:00
+0018c0000000033QAB,Company 43469,company43469.example.com,Healthcare,6,2-10,Prospect,2026-07-24 21:05:03,false,2026-10-01 06:00:00
+0018c0000000034QAB,Company 31815,company31815.example.com,Media,6,2-10,Prospect,2026-07-20 20:56:57,false,2026-10-01 06:00:00
+0018c0000000035QAB,Company 12229,company12229.example.com,Ecommerce,48,200k-500k,Prospect,2026-07-28 22:41:02,false,2026-10-01 06:00:00
+0018c0000000036QAB,Company 97809,company97809.example.com,Financial Services,294,<15k,Prospect,2026-07-27 15:20:46,false,2026-10-01 06:00:00
+0018c0000000037QAB,Company 33130,company33130.example.com,Healthcare,109,60k-200k,Prospect,2026-07-25 06:57:43,false,2026-10-01 06:00:00
+0018c0000000038QAB,Company 97741,company97741.example.com,Software,48,60k-200k,Prospect,2026-07-28 22:45:01,false,2026-10-01 06:00:00
+0018c0000000039QAB,Company 40730,company40730.example.com,Financial Services,67,15k-60k,Prospect,2026-07-23 02:45:39,false,2026-10-01 06:00:00
+0018c0000000040QAB,Company 88970,company88970.example.com,Manufacturing,23,15k-60k,Prospect,2026-07-23 12:43:29,false,2026-10-01 06:00:00
+0018c0000000041QAB,Company 23287,company23287.example.com,Healthcare,257,<15k,Prospect,2026-07-25 06:49:31,false,2026-10-01 06:00:00
+0018c0000000042QAB,Company 13092,company13092.example.com,Media,30,11-50,Prospect,2026-07-26 11:49:30,false,2026-10-01 06:00:00
+0018c0000000043QAB,Company 63394,company63394.example.com,Manufacturing,242,<15k,Prospect,2026-07-29 19:04:01,false,2026-10-01 06:00:00
+0018c0000000044QAB,Company 68920,company68920.example.com,Financial Services,83,<15k,Prospect,2026-07-26 00:02:00,false,2026-10-01 06:00:00
+0018c0000000045QAB,Company 84131,company84131.example.com,Software,89,15k-60k,Prospect,2026-07-27 20:05:06,false,2026-10-01 06:00:00
+0018c0000000046QAB,Company 27602,company27602.example.com,Healthcare,291,15k-60k,Prospect,2026-07-27 12:59:26,false,2026-10-01 06:00:00
+0018c0000000047QAB,Company 94356,company94356.example.com,Manufacturing,27,60k-200k,Prospect,2026-08-01 09:08:57,false,2026-10-01 06:00:00
+0018c0000000048QAB,Company 96443,company96443.example.com,Financial Services,6,2-10,Prospect,2026-08-01 14:48:30,false,2026-10-01 06:00:00
+0018c0000000049QAB,Company 33188,company33188.example.com,Manufacturing,229,<15k,Prospect,2026-08-01 08:17:55,false,2026-10-01 06:00:00
+0018c0000000050QAB,Company 8616,company8616.example.com,Media,244,15k-60k,Prospect,2026-07-26 17:16:23,false,2026-10-01 06:00:00
+0018c0000000051QAB,Company 34099,company34099.example.com,Manufacturing,193,15k-60k,Prospect,2026-07-31 07:46:46,false,2026-10-01 06:00:00
+0018c0000000052QAB,Company 93913,company93913.example.com,Healthcare,120,51-200,Prospect,2026-07-30 10:54:58,false,2026-10-01 06:00:00
+0018c0000000053QAB,Company 22792,company22792.example.com,Financial Services,6,<15k,Prospect,2026-07-28 14:48:23,false,2026-10-01 06:00:00
+0018c0000000054QAB,Company 45992,company45992.example.com,Healthcare,30,11-50,Prospect,2026-07-28 16:21:03,false,2026-10-01 06:00:00
+0018c0000000055QAB,Company 87852,company87852.example.com,Ecommerce,12,60k-200k,Prospect,2026-08-04 10:42:15,false,2026-10-01 06:00:00
+0018c0000000056QAB,Company 38611,company38611.example.com,Healthcare,82,<15k,Prospect,2026-08-03 03:50:38,false,2026-10-01 06:00:00
+0018c0000000057QAB,Company 43686,company43686.example.com,Manufacturing,162,500k+,Prospect,2026-07-31 16:27:41,false,2026-10-01 06:00:00
+0018c0000000058QAB,Company 4150,company4150.example.com,Ecommerce,255,60k-200k,Prospect,2026-07-30 09:40:42,false,2026-10-01 06:00:00
+0018c0000000059QAB,Company 34742,company34742.example.com,Healthcare,279,15k-60k,Prospect,2026-08-07 07:12:23,false,2026-10-01 06:00:00
+0018c0000000060QAB,Company 6946,company6946.example.com,Software,229,15k-60k,Prospect,2026-07-31 01:12:03,false,2026-10-01 06:00:00
+0018c0000000061QAB,Company 49189,company49189.example.com,Software,281,200k-500k,Prospect,2026-07-30 17:02:54,false,2026-10-01 06:00:00
+0018c0000000062QAB,Company 42938,company42938.example.com,Financial Services,70,60k-200k,Prospect,2026-08-03 23:06:26,false,2026-10-01 06:00:00
+0018c0000000063QAB,Company 86520,company86520.example.com,Financial Services,133,500k+,Prospect,2026-08-06 19:36:52,false,2026-10-01 06:00:00
+0018c0000000064QAB,Company 11934,company11934.example.com,Financial Services,272,200k-500k,Prospect,2026-08-02 11:57:39,false,2026-10-01 06:00:00
+0018c0000000065QAB,Company 49869,company49869.example.com,Manufacturing,182,<15k,Prospect,2026-08-03 21:28:46,false,2026-10-01 06:00:00
+0018c0000000066QAB,Company 49995,company49995.example.com,Healthcare,85,60k-200k,Prospect,2026-07-30 02:31:22,false,2026-10-01 06:00:00
+0018c0000000067QAB,Company 53121,company53121.example.com,Healthcare,200,200k-500k,Prospect,2026-08-09 01:17:47,false,2026-10-01 06:00:00
+0018c0000000068QAB,Company 17422,company17422.example.com,Software,120,51-200,Prospect,2026-08-01 17:12:15,false,2026-10-01 06:00:00
+0018c0000000069QAB,Company 66973,company66973.example.com,Manufacturing,207,200k-500k,Prospect,2026-08-08 15:13:29,false,2026-10-01 06:00:00
+0018c0000000070QAB,Company 39755,company39755.example.com,Media,163,<15k,Prospect,2026-08-07 16:24:29,false,2026-10-01 06:00:00
+0018c0000000071QAB,Company 82357,company82357.example.com,Healthcare,165,60k-200k,Prospect,2026-08-06 07:56:00,false,2026-10-01 06:00:00
+0018c0000000072QAB,Company 86100,company86100.example.com,Media,131,<15k,Prospect,2026-07-31 16:34:23,false,2026-10-01 06:00:00
+0018c0000000073QAB,Company 37464,company37464.example.com,Financial Services,20,<15k,Prospect,2026-08-05 12:08:37,false,2026-10-01 06:00:00
+0018c0000000074QAB,Company 41380,company41380.example.com,Healthcare,196,200k-500k,Prospect,2026-08-07 00:00:37,false,2026-10-01 06:00:00
+0018c0000000075QAB,Company 96482,company96482.example.com,Software,194,<15k,Prospect,2026-08-03 08:12:52,false,2026-10-01 06:00:00
+0018c0000000076QAB,Company 43968,company43968.example.com,Ecommerce,245,<15k,Prospect,2026-08-08 12:24:44,false,2026-10-01 06:00:00
+0018c0000000077QAB,Company 31777,company31777.example.com,Manufacturing,40,<15k,Prospect,2026-08-12 18:09:21,false,2026-10-01 06:00:00
+0018c0000000078QAB,Company 88378,company88378.example.com,Healthcare,84,15k-60k,Prospect,2026-08-09 00:59:20,false,2026-10-01 06:00:00
+0018c0000000079QAB,Company 5524,company5524.example.com,Software,30,11-50,Prospect,2026-08-08 03:11:08,false,2026-10-01 06:00:00
+0018c0000000080QAB,Company 12783,company12783.example.com,Media,6,2-10,Prospect,2026-08-10 21:21:30,false,2026-10-01 06:00:00
+0018c0000000081QAB,Company 84711,company84711.example.com,Manufacturing,65,60k-200k,Prospect,2026-08-08 05:36:40,false,2026-10-01 06:00:00
+0018c0000000082QAB,Company 94743,company94743.example.com,Ecommerce,105,<15k,Prospect,2026-08-11 08:34:00,false,2026-10-01 06:00:00
+0018c0000000083QAB,Company 19158,company19158.example.com,Ecommerce,156,15k-60k,Prospect,2026-08-08 06:52:34,false,2026-10-01 06:00:00
+0018c0000000084QAB,Company 14374,company14374.example.com,Healthcare,30,11-50,Prospect,2026-08-09 09:10:11,false,2026-10-01 06:00:00
+0018c0000000085QAB,Company 11058,company11058.example.com,Media,30,11-50,Prospect,2026-08-11 06:36:33,false,2026-10-01 06:00:00
+0018c0000000086QAB,Company 40170,company40170.example.com,Healthcare,175,<15k,Prospect,2026-08-09 07:34:29,false,2026-10-01 06:00:00
+0018c0000000087QAB,Company 63110,company63110.example.com,Software,6,2-10,Prospect,2026-08-06 18:45:50,false,2026-10-01 06:00:00
+0018c0000000088QAB,Company 83502,company83502.example.com,Software,30,11-50,Prospect,2026-08-12 07:54:46,false,2026-10-01 06:00:00
+0018c0000000089QAB,Company 20075,company20075.example.com,Financial Services,67,200k-500k,Prospect,2026-08-13 19:38:39,false,2026-10-01 06:00:00
+0018c0000000090QAB,Company 73473,company73473.example.com,Healthcare,135,60k-200k,Prospect,2026-08-08 18:12:37,false,2026-10-01 06:00:00
+0018c0000000091QAB,Company 52660,company52660.example.com,Healthcare,191,<15k,Prospect,2026-08-11 15:31:51,false,2026-10-01 06:00:00
+0018c0000000092QAB,Company 13654,company13654.example.com,Manufacturing,30,11-50,Prospect,2026-08-13 20:43:34,false,2026-10-01 06:00:00
+0018c0000000093QAB,Company 52805,company52805.example.com,Software,400,201+,Prospect,2026-08-17 07:10:09,false,2026-10-01 06:00:00
+0018c0000000094QAB,Company 41008,company41008.example.com,Software,6,2-10,Prospect,2026-08-17 21:08:43,false,2026-10-01 06:00:00
+0018c0000000095QAB,Company 64135,company64135.example.com,Software,30,11-50,Prospect,2026-08-12 16:34:40,false,2026-10-01 06:00:00
+0018c0000000096QAB,Company 38505,company38505.example.com,Manufacturing,251,<15k,Prospect,2026-08-11 05:24:29,false,2026-10-01 06:00:00
+0018c0000000097QAB,Company 26496,company26496.example.com,Software,223,15k-60k,Prospect,2026-08-10 18:02:38,false,2026-10-01 06:00:00
+0018c0000000098QAB,Company 62392,company62392.example.com,Media,294,500k+,Prospect,2026-08-12 19:53:10,false,2026-10-01 06:00:00
+0018c0000000099QAB,Company 93288,company93288.example.com,Software,188,<15k,Prospect,2026-08-20 01:33:57,false,2026-10-01 06:00:00
+0018c0000000100QAB,Company 64511,company64511.example.com,Manufacturing,186,<15k,Prospect,2026-08-16 23:27:35,false,2026-10-01 06:00:00
+0018c0000000101QAB,Company 5189,company5189.example.com,Manufacturing,25,15k-60k,Prospect,2026-08-15 03:05:43,false,2026-10-01 06:00:00
+0018c0000000102QAB,Company 96512,company96512.example.com,Manufacturing,400,201+,Prospect,2026-08-15 08:40:50,false,2026-10-01 06:00:00
+0018c0000000103QAB,Company 14363,company14363.example.com,Manufacturing,30,11-50,Prospect,2026-08-13 11:14:52,false,2026-10-01 06:00:00
+0018c0000000104QAB,Company 58944,company58944.example.com,Media,48,15k-60k,Prospect,2026-08-18 22:02:12,false,2026-10-01 06:00:00
+0018c0000000105QAB,Company 72423,company72423.example.com,Software,90,15k-60k,Prospect,2026-08-17 16:04:59,false,2026-10-01 06:00:00
+0018c0000000106QAB,Company 85338,company85338.example.com,Software,120,51-200,Prospect,2026-08-14 04:03:09,false,2026-10-01 06:00:00
+0018c0000000107QAB,Company 58611,company58611.example.com,Manufacturing,148,15k-60k,Prospect,2026-08-18 09:44:47,false,2026-10-01 06:00:00
+0018c0000000108QAB,Company 77786,company77786.example.com,Manufacturing,107,200k-500k,Prospect,2026-08-16 00:55:17,false,2026-10-01 06:00:00
+0018c0000000109QAB,Company 77351,company77351.example.com,Software,286,15k-60k,Prospect,2026-08-21 20:16:06,false,2026-10-01 06:00:00
+0018c0000000110QAB,Company 11313,company11313.example.com,Manufacturing,154,15k-60k,Prospect,2026-08-24 07:45:24,false,2026-10-01 06:00:00
+0018c0000000111QAB,Company 96219,company96219.example.com,Financial Services,140,500k+,Prospect,2026-08-16 12:35:36,false,2026-10-01 06:00:00
+0018c0000000112QAB,Company 24478,company24478.example.com,Ecommerce,270,<15k,Prospect,2026-08-22 09:41:17,false,2026-10-01 06:00:00
+0018c0000000113QAB,Company 48519,company48519.example.com,Media,289,<15k,Prospect,2026-08-16 18:18:47,false,2026-10-01 06:00:00
+0018c0000000114QAB,Company 30136,company30136.example.com,Financial Services,101,200k-500k,Prospect,2026-08-18 09:20:52,false,2026-10-01 06:00:00
+0018c0000000115QAB,Company 27922,company27922.example.com,Software,12,60k-200k,Prospect,2026-08-20 14:14:51,false,2026-10-01 06:00:00
+0018c0000000116QAB,Company 45216,company45216.example.com,Ecommerce,201,60k-200k,Prospect,2026-08-18 04:26:34,false,2026-10-01 06:00:00
+0018c0000000117QAB,Company 84924,company84924.example.com,Ecommerce,179,<15k,Prospect,2026-08-24 14:35:41,false,2026-10-01 06:00:00
+0018c0000000118QAB,Company 99149,company99149.example.com,Software,128,15k-60k,Prospect,2026-08-21 08:35:45,false,2026-10-01 06:00:00
+0018c0000000119QAB,Company 5978,company5978.example.com,Media,56,15k-60k,Prospect,2026-08-23 17:52:22,false,2026-10-01 06:00:00
+0018c0000000120QAB,Company 80234,company80234.example.com,Manufacturing,274,15k-60k,Prospect,2026-08-21 22:06:19,false,2026-10-01 06:00:00
+0018c0000000121QAB,Company 62147,company62147.example.com,Manufacturing,43,200k-500k,Prospect,2026-08-23 04:45:06,false,2026-10-01 06:00:00
+0018c0000000122QAB,Company 45781,company45781.example.com,Media,120,<15k,Prospect,2026-08-23 22:45:57,false,2026-10-01 06:00:00
+0018c0000000123QAB,Company 48941,company48941.example.com,Manufacturing,248,<15k,Prospect,2026-08-22 00:47:15,false,2026-10-01 06:00:00
+0018c0000000124QAB,Company 51716,company51716.example.com,Manufacturing,221,200k-500k,Prospect,2026-08-20 18:26:33,false,2026-10-01 06:00:00
+0018c0000000125QAB,Company 71509,company71509.example.com,Healthcare,30,11-50,Prospect,2026-08-25 17:45:30,false,2026-10-01 06:00:00
+0018c0000000126QAB,Company 74565,company74565.example.com,Media,50,200k-500k,Prospect,2026-08-23 14:26:23,false,2026-10-01 06:00:00
+0018c0000000127QAB,Company 18704,company18704.example.com,Financial Services,122,60k-200k,Prospect,2026-08-22 15:39:36,false,2026-10-01 06:00:00
+0018c0000000128QAB,Company 9866,company9866.example.com,Media,60,15k-60k,Prospect,2026-08-27 21:00:39,false,2026-10-01 06:00:00
+0018c0000000129QAB,Company 54946,company54946.example.com,Healthcare,400,201+,Prospect,2026-08-20 12:56:54,false,2026-10-01 06:00:00
+0018c0000000130QAB,Company 51638,company51638.example.com,Manufacturing,210,<15k,Prospect,2026-08-23 04:23:28,false,2026-10-01 06:00:00
+0018c0000000131QAB,Company 31313,company31313.example.com,Financial Services,265,60k-200k,Prospect,2026-08-24 22:47:13,false,2026-10-01 06:00:00
+0018c0000000132QAB,Company 2647,company2647.example.com,Manufacturing,295,15k-60k,Prospect,2026-08-27 13:59:46,false,2026-10-01 06:00:00
+0018c0000000133QAB,Company 76969,company76969.example.com,Software,107,200k-500k,Prospect,2026-08-27 19:59:16,false,2026-10-01 06:00:00
+0018c0000000134QAB,Company 92727,company92727.example.com,Healthcare,71,<15k,Prospect,2026-08-28 15:01:59,false,2026-10-01 06:00:00
+0018c0000000135QAB,Company 36153,company36153.example.com,Media,81,60k-200k,Prospect,2026-08-24 05:27:20,false,2026-10-01 06:00:00
+0018c0000000136QAB,Company 20670,company20670.example.com,Software,120,51-200,Prospect,2026-09-01 04:30:52,false,2026-10-01 06:00:00
+0018c0000000137QAB,Company 22870,company22870.example.com,Ecommerce,87,15k-60k,Prospect,2026-08-31 07:57:01,false,2026-10-01 06:00:00
+0018c0000000138QAB,Company 66541,company66541.example.com,Media,81,15k-60k,Prospect,2026-08-30 16:18:05,false,2026-10-01 06:00:00
+0018c0000000139QAB,Company 99499,company99499.example.com,Ecommerce,44,15k-60k,Prospect,2026-09-02 06:50:11,false,2026-10-01 06:00:00
+0018c0000000140QAB,Company 95161,company95161.example.com,Software,44,15k-60k,Prospect,2026-09-01 04:37:54,false,2026-10-01 06:00:00
+0018c0000000141QAB,Company 1678,company1678.example.com,Financial Services,30,11-50,Prospect,2026-08-27 14:14:10,false,2026-10-01 06:00:00
+0018c0000000142QAB,Company 88925,company88925.example.com,Manufacturing,87,60k-200k,Prospect,2026-08-28 18:48:38,false,2026-10-01 06:00:00
+0018c0000000143QAB,Company 51532,company51532.example.com,Ecommerce,118,500k+,Prospect,2026-09-03 21:15:44,false,2026-10-01 06:00:00
+0018c0000000144QAB,Company 78424,company78424.example.com,Healthcare,208,60k-200k,Prospect,2026-08-28 20:01:40,false,2026-10-01 06:00:00
+0018c0000000145QAB,Company 9360,company9360.example.com,Manufacturing,103,60k-200k,Prospect,2026-08-27 07:01:53,false,2026-10-01 06:00:00
+0018c0000000146QAB,Company 77017,company77017.example.com,Healthcare,57,15k-60k,Prospect,2026-08-30 22:20:46,false,2026-10-01 06:00:00
+0018c0000000147QAB,Company 19521,company19521.example.com,Software,190,15k-60k,Prospect,2026-08-26 01:57:38,false,2026-10-01 06:00:00
+0018c0000000148QAB,Company 66655,company66655.example.com,Manufacturing,140,15k-60k,Prospect,2026-09-01 14:05:10,false,2026-10-01 06:00:00
+0018c0000000149QAB,Company 13241,company13241.example.com,Media,232,60k-200k,Prospect,2026-08-29 05:40:57,false,2026-10-01 06:00:00
+0018c0000000150QAB,Company 22880,company22880.example.com,Ecommerce,30,11-50,Prospect,2026-09-04 02:13:21,false,2026-10-01 06:00:00
+0018c0000000151QAB,Company 28073,company28073.example.com,Manufacturing,41,15k-60k,Prospect,2026-09-04 09:31:29,false,2026-10-01 06:00:00
+0018c0000000152QAB,Company 68349,company68349.example.com,Healthcare,20,500k+,Prospect,2026-09-01 14:30:28,false,2026-10-01 06:00:00
+0018c0000000153QAB,Company 50781,company50781.example.com,Software,30,11-50,Prospect,2026-08-31 06:32:11,false,2026-10-01 06:00:00
+0018c0000000154QAB,Company 11961,company11961.example.com,Financial Services,284,200k-500k,Prospect,2026-09-06 00:04:32,false,2026-10-01 06:00:00
+0018c0000000155QAB,Company 1009,company1009.example.com,Media,26,15k-60k,Prospect,2026-09-01 10:31:47,false,2026-10-01 06:00:00
+0018c0000000156QAB,Company 63678,company63678.example.com,Manufacturing,265,60k-200k,Prospect,2026-09-03 17:40:18,false,2026-10-01 06:00:00
+0018c0000000157QAB,Company 4553,company4553.example.com,Manufacturing,272,<15k,Prospect,2026-09-03 11:59:38,false,2026-10-01 06:00:00
+0018c0000000158QAB,Company 91698,company91698.example.com,Media,285,60k-200k,Prospect,2026-09-01 21:46:53,false,2026-10-01 06:00:00
+0018c0000000159QAB,Company 66823,company66823.example.com,Software,161,<15k,Prospect,2026-09-03 23:52:12,false,2026-10-01 06:00:00
+0018c0000000160QAB,Company 20334,company20334.example.com,Manufacturing,249,200k-500k,Prospect,2026-09-05 02:43:15,false,2026-10-01 06:00:00
+0018c0000000161QAB,Company 75495,company75495.example.com,Financial Services,250,60k-200k,Prospect,2026-09-04 11:41:44,false,2026-10-01 06:00:00
+0018c0000000162QAB,Company 43994,company43994.example.com,Media,30,11-50,Prospect,2026-09-04 09:01:44,false,2026-10-01 06:00:00
+0018c0000000163QAB,Company 83652,company83652.example.com,Healthcare,252,<15k,Prospect,2026-09-04 19:41:13,false,2026-10-01 06:00:00
+0018c0000000164QAB,Company 28827,company28827.example.com,Software,227,15k-60k,Prospect,2026-08-31 07:26:13,false,2026-10-01 06:00:00
+0018c0000000165QAB,Company 1536,company1536.example.com,Media,277,<15k,Prospect,2026-09-03 09:52:42,false,2026-10-01 06:00:00
+0018c0000000166QAB,Company 32554,company32554.example.com,Healthcare,150,15k-60k,Prospect,2026-09-06 20:56:06,false,2026-10-01 06:00:00
+0018c0000000167QAB,Company 32300,company32300.example.com,Software,284,60k-200k,Prospect,2026-09-05 00:27:16,false,2026-10-01 06:00:00
+0018c0000000168QAB,Company 67116,company67116.example.com,Software,115,60k-200k,Prospect,2026-09-03 10:49:53,false,2026-10-01 06:00:00
+0018c0000000169QAB,Company 65264,company65264.example.com,Media,30,11-50,Prospect,2026-09-06 17:02:53,false,2026-10-01 06:00:00
+0018c0000000170QAB,Company 57633,company57633.example.com,Manufacturing,85,15k-60k,Prospect,2026-09-04 09:54:03,false,2026-10-01 06:00:00
+0018c0000000171QAB,Company 49373,company49373.example.com,Media,30,11-50,Prospect,2026-09-04 15:30:41,false,2026-10-01 06:00:00
+0018c0000000172QAB,Company 68489,company68489.example.com,Ecommerce,96,15k-60k,Prospect,2026-09-08 21:56:45,false,2026-10-01 06:00:00
+0018c0000000173QAB,Company 57455,company57455.example.com,Ecommerce,51,<15k,Prospect,2026-09-11 14:33:05,false,2026-10-01 06:00:00
+0018c0000000174QAB,Company 74004,company74004.example.com,Media,120,51-200,Prospect,2026-09-07 17:16:28,false,2026-10-01 06:00:00
+0018c0000000175QAB,Company 56191,company56191.example.com,Manufacturing,161,60k-200k,Prospect,2026-09-09 01:11:44,false,2026-10-01 06:00:00
+0018c0000000176QAB,Company 49028,company49028.example.com,Manufacturing,184,<15k,Prospect,2026-09-14 06:49:02,false,2026-10-01 06:00:00
+0018c0000000177QAB,Company 1073,company1073.example.com,Manufacturing,87,15k-60k,Prospect,2026-09-11 19:32:31,false,2026-10-01 06:00:00
+0018c0000000178QAB,Company 99927,company99927.example.com,Healthcare,104,200k-500k,Prospect,2026-09-09 17:20:22,false,2026-10-01 06:00:00
+0018c0000000179QAB,Company 51877,company51877.example.com,Media,24,<15k,Prospect,2026-09-10 11:52:58,false,2026-10-01 06:00:00
+0018c0000000180QAB,Company 72194,company72194.example.com,Manufacturing,255,200k-500k,Prospect,2026-09-15 21:30:08,false,2026-10-01 06:00:00
+0018c0000000181QAB,Company 71269,company71269.example.com,Healthcare,155,60k-200k,Prospect,2026-09-09 06:14:52,false,2026-10-01 06:00:00
+0018c0000000182QAB,Company 4708,company4708.example.com,Financial Services,296,<15k,Prospect,2026-09-12 02:13:27,false,2026-10-01 06:00:00
+0018c0000000183QAB,Company 3919,company3919.example.com,Ecommerce,247,60k-200k,Prospect,2026-09-09 21:59:58,false,2026-10-01 06:00:00
+0018c0000000184QAB,Company 67348,company67348.example.com,Manufacturing,120,51-200,Prospect,2026-09-12 18:22:51,false,2026-10-01 06:00:00
+0018c0000000185QAB,Company 6482,company6482.example.com,Financial Services,51,<15k,Prospect,2026-09-11 06:59:28,false,2026-10-01 06:00:00
+0018c0000000186QAB,Company 39756,company39756.example.com,Ecommerce,299,<15k,Prospect,2026-09-16 12:10:03,false,2026-10-01 06:00:00
+0018c0000000187QAB,Company 28316,company28316.example.com,Media,143,60k-200k,Prospect,2026-09-15 11:22:21,false,2026-10-01 06:00:00
+0018c0000000188QAB,Company 56612,company56612.example.com,Ecommerce,212,15k-60k,Prospect,2026-09-14 09:01:45,false,2026-10-01 06:00:00
+0018c0000000189QAB,Company 25280,company25280.example.com,Healthcare,30,11-50,Prospect,2026-09-11 09:42:12,false,2026-10-01 06:00:00
+0018c0000000190QAB,Company 31755,company31755.example.com,Healthcare,261,<15k,Prospect,2026-09-15 04:53:27,false,2026-10-01 06:00:00
+0018c0000000191QAB,Company 55569,company55569.example.com,Media,56,15k-60k,Prospect,2026-09-14 22:10:49,false,2026-10-01 06:00:00
+0018c0000000192QAB,Company 8557,company8557.example.com,Ecommerce,80,60k-200k,Prospect,2026-09-14 15:22:50,false,2026-10-01 06:00:00
+0018c0000000193QAB,Company 97289,company97289.example.com,Healthcare,92,15k-60k,Prospect,2026-09-16 18:33:06,false,2026-10-01 06:00:00
+0018c0000000194QAB,Company 25514,company25514.example.com,Software,120,51-200,Prospect,2026-09-11 01:48:32,false,2026-10-01 06:00:00
+0018c0000000195QAB,Company 13629,company13629.example.com,Software,6,2-10,Prospect,2026-09-14 11:52:38,false,2026-10-01 06:00:00
+0018c0000000196QAB,Company 70605,company70605.example.com,Ecommerce,192,<15k,Prospect,2026-09-14 18:52:18,false,2026-10-01 06:00:00
+0018c0000000197QAB,Company 60610,company60610.example.com,Ecommerce,7,15k-60k,Prospect,2026-09-15 03:27:40,false,2026-10-01 06:00:00
+0018c0000000198QAB,Company 76375,company76375.example.com,Media,265,15k-60k,Prospect,2026-09-15 21:34:36,false,2026-10-01 06:00:00
+0018c0000000199QAB,Company 32820,company32820.example.com,Ecommerce,213,<15k,Prospect,2026-09-15 05:43:43,false,2026-10-01 06:00:00
+0018c0000000200QAB,Company 22272,company22272.example.com,Manufacturing,6,15k-60k,Prospect,2026-09-11 12:36:14,false,2026-10-01 06:00:00
+0018c0000000201QAB,Company 65171,company65171.example.com,Software,119,15k-60k,Prospect,2026-09-20 11:05:32,false,2026-10-01 06:00:00
+0018c0000000202QAB,Company 3952,company3952.example.com,Media,48,60k-200k,Prospect,2026-09-08 23:42:23,false,2026-10-01 06:00:00
+0018c0000000203QAB,Company 99351,company99351.example.com,Manufacturing,6,2-10,Prospect,2026-09-14 06:08:46,false,2026-10-01 06:00:00
+0018c0000000204QAB,Company 67627,company67627.example.com,Software,30,60k-200k,Prospect,2026-09-11 19:06:19,false,2026-10-01 06:00:00
+0018c0000000205QAB,Company 37656,company37656.example.com,Ecommerce,271,15k-60k,Prospect,2026-09-19 16:12:22,false,2026-10-01 06:00:00
+0018c0000000206QAB,Company 36288,company36288.example.com,Media,247,15k-60k,Prospect,2026-09-15 07:30:52,false,2026-10-01 06:00:00
+0018c0000000207QAB,Company 8551,company8551.example.com,Manufacturing,30,<15k,Prospect,2026-09-13 15:23:00,false,2026-10-01 06:00:00
+0018c0000000208QAB,Company 58737,company58737.example.com,Manufacturing,6,2-10,Prospect,2026-09-14 21:20:10,false,2026-10-01 06:00:00
+0018c0000000209QAB,Company 58651,company58651.example.com,Healthcare,120,51-200,Prospect,2026-09-16 03:54:32,false,2026-10-01 06:00:00
+0018c0000000210QAB,Company 87702,company87702.example.com,Healthcare,164,200k-500k,Prospect,2026-09-22 09:05:26,false,2026-10-01 06:00:00
+0018c0000000211QAB,Company 44902,company44902.example.com,Software,118,15k-60k,Prospect,2026-09-18 15:13:56,false,2026-10-01 06:00:00
+0018c0000000212QAB,Company 82838,company82838.example.com,Financial Services,78,15k-60k,Prospect,2026-09-20 21:27:51,false,2026-10-01 06:00:00
+0018c0000000213QAB,Company 32538,company32538.example.com,Software,168,60k-200k,Prospect,2026-09-24 01:16:17,false,2026-10-01 06:00:00
+0018c0000000214QAB,Company 94923,company94923.example.com,Manufacturing,22,60k-200k,Prospect,2026-09-16 08:56:39,false,2026-10-01 06:00:00
+0018c0000000215QAB,Company 41253,company41253.example.com,Ecommerce,179,15k-60k,Prospect,2026-09-26 02:39:25,false,2026-10-01 06:00:00
+0018c0000000216QAB,Company 43396,company43396.example.com,Ecommerce,180,15k-60k,Prospect,2026-09-18 14:33:01,false,2026-10-01 06:00:00
+0018c0000000217QAB,Company 66179,company66179.example.com,Ecommerce,206,15k-60k,Prospect,2026-09-17 00:54:58,false,2026-10-01 06:00:00
+0018c0000000218QAB,Company 67094,company67094.example.com,Software,93,<15k,Prospect,2026-09-15 22:57:39,false,2026-10-01 06:00:00
+0018c0000000219QAB,Company 96515,company96515.example.com,Software,184,60k-200k,Prospect,2026-09-25 05:13:13,false,2026-10-01 06:00:00
+0018c0000000220QAB,Company 26090,company26090.example.com,Media,230,500k+,Prospect,2026-09-23 15:25:45,false,2026-10-01 06:00:00
+0018c0000000221QAB,Company 89346,company89346.example.com,Media,26,200k-500k,Prospect,2026-09-22 12:31:22,false,2026-10-01 06:00:00
+0018c0000000222QAB,Company 65843,company65843.example.com,Ecommerce,30,11-50,Prospect,2026-09-20 00:38:18,false,2026-10-01 06:00:00
+0018c0000000223QAB,Company 3265,company3265.example.com,Media,95,60k-200k,Prospect,2026-09-24 18:21:50,false,2026-10-01 06:00:00
+0018c0000000224QAB,Company 60534,company60534.example.com,Financial Services,124,60k-200k,Prospect,2026-09-26 15:59:03,false,2026-10-01 06:00:00
+0018c0000000225QAB,Company 4386,company4386.example.com,Manufacturing,109,200k-500k,Prospect,2026-09-27 04:55:01,false,2026-10-01 06:00:00
+0018c0000000226QAB,Company 8954,company8954.example.com,Media,223,60k-200k,Prospect,2026-09-24 20:16:02,false,2026-10-01 06:00:00
+0018c0000000227QAB,Company 26528,company26528.example.com,Manufacturing,146,60k-200k,Prospect,2026-09-23 15:34:18,false,2026-10-01 06:00:00
+0018c0000000228QAB,Company 42884,company42884.example.com,Healthcare,50,60k-200k,Prospect,2026-09-25 09:09:56,false,2026-10-01 06:00:00
+0018c0000000229QAB,Company 72550,company72550.example.com,Healthcare,9,60k-200k,Prospect,2026-09-27 14:27:17,false,2026-10-01 06:00:00
+0018c0000000230QAB,Company 84991,company84991.example.com,Ecommerce,277,60k-200k,Prospect,2026-09-20 14:31:07,false,2026-10-01 06:00:00
+0018c0000000231QAB,Company 48153,company48153.example.com,Manufacturing,245,200k-500k,Prospect,2026-09-26 13:42:19,false,2026-10-01 06:00:00
+0018c0000000232QAB,Company 49967,company49967.example.com,Manufacturing,215,15k-60k,Prospect,2026-09-21 02:44:09,false,2026-10-01 06:00:00
+0018c0000000233QAB,Company 54927,company54927.example.com,Media,54,15k-60k,Prospect,2026-09-26 22:47:55,false,2026-10-01 06:00:00
+0018c0000000234QAB,Company 88530,company88530.example.com,Ecommerce,120,51-200,Prospect,2026-09-25 20:50:08,false,2026-10-01 06:00:00
+0018c0000000235QAB,Company 10468,company10468.example.com,Financial Services,232,15k-60k,Prospect,2026-09-20 06:35:42,false,2026-10-01 06:00:00
+0018c0000000236QAB,Company 24263,company24263.example.com,Financial Services,148,<15k,Prospect,2026-09-29 06:04:08,false,2026-10-01 06:00:00
+0018c0000000237QAB,Company 33152,company33152.example.com,Media,120,51-200,Prospect,2026-09-24 10:15:36,false,2026-10-01 06:00:00
+0018c0000000238QAB,Company 98248,company98248.example.com,Ecommerce,210,60k-200k,Prospect,2026-09-23 15:54:53,false,2026-10-01 06:00:00
+0018c0000000239QAB,Company 38383,company38383.example.com,Financial Services,137,15k-60k,Prospect,2026-09-29 13:13:33,false,2026-10-01 06:00:00
+0018c0000000240QAB,Company 25019,company25019.example.com,Manufacturing,280,15k-60k,Prospect,2026-09-26 20:01:28,false,2026-10-01 06:00:00
+0018c0000000241QAB,Company 58425,company58425.example.com,Manufacturing,30,11-50,Prospect,2026-09-30 07:02:30,false,2026-10-01 06:00:00
+0018c0000000242QAB,Company 97972,company97972.example.com,Software,111,15k-60k,Prospect,2026-09-28 23:38:20,false,2026-10-01 06:00:00

@@ -1,15 +1,17 @@
 """
 Generate synthetic multi-touch journey seeds for the paid_media_mart project.
 
-Run from the dbt project root, after generate_funnel_seeds.py:
+Run from the dbt project root, after generate_salesforce_seeds.py:
     python scripts/generate_touchpoint_seeds.py
 
-Reads seeds/leads.csv and seeds/funnel_events.csv and writes:
+Reads seeds/sf_lead.csv and seeds/sf_opportunity.csv and writes:
   web_sessions.csv         GA4-style sessions (one row per session, with UTMs)
   web_identities.csv       user_pseudo_id -> lead_id, set when a visitor submits a form
   marketo_activities.csv   email clicks and webinar attendance for known leads
+It also adds each lead's Marketo program memberships to sf_campaign_member.csv, the way
+Marketo's Salesforce sync turns program membership into campaign membership.
 
-Every lead keeps the UTMs it already has in leads.csv; that is its lead-creation touch.
+Every lead keeps the UTMs it already has in sf_lead.csv; that is its lead-creation touch.
 This script adds the touches around it: earlier anonymous visits, and nurture touches between
 lead creation and opportunity. Standard library only, fixed random seed.
 
@@ -137,14 +139,69 @@ def messy(source):
     return source
 
 
-def main():
-    with open(os.path.join(SEEDS, "leads.csv")) as fh:
-        leads = list(csv.DictReader(fh))
-    opp_at = {}
-    with open(os.path.join(SEEDS, "funnel_events.csv")) as fh:
+LEAD_SOURCE_FORM = {"Free Trial": "free_trial", "Talk to Sales": "talk_to_sales",
+                    "Working Session": "working_session"}
+
+
+def read_leads():
+    """Live Salesforce leads (merged duplicates removed), in creation order, plus opp times."""
+    with open(os.path.join(SEEDS, "sf_opportunity.csv")) as fh:
+        opp_created = {r["id"]: r["created_date"] for r in csv.DictReader(fh)}
+    leads, opp_at = [], {}
+    with open(os.path.join(SEEDS, "sf_lead.csv")) as fh:
         for r in csv.DictReader(fh):
-            if r["stage"] == "opportunity_created":
-                opp_at[r["lead_id"]] = datetime.strptime(r["event_ts"], FMT)
+            if r["is_deleted"] == "true":
+                continue
+            form = LEAD_SOURCE_FORM[r["lead_source"]]
+            leads.append({
+                "lead_id": r["id"], "created_ts": r["created_date"], "landing_form": form,
+                "product_line": "new_product" if r["product_interest__c"] == "New Product" else "core",
+                "motion": "plg" if form == "free_trial" else "slg",
+                "utm_source": r["utm_source__c"], "utm_medium": r["utm_medium__c"],
+                "utm_campaign": r["utm_campaign__c"],
+                "contact_id": r["converted_contact_id"],
+            })
+            if r["converted_opportunity_id"]:
+                opp_at[r["id"]] = datetime.strptime(opp_created[r["converted_opportunity_id"]], FMT)
+    return leads, opp_at
+
+
+def write_program_members(leads, activities):
+    """Replace lead-level Marketo program members in sf_campaign_member.csv."""
+    with open(os.path.join(SEEDS, "sf_campaign.csv")) as fh:
+        campaigns = list(csv.DictReader(fh))
+    program_ids = {c["name"]: c["id"] for c in campaigns if c["utm_source__c"] == "marketo"}
+    path = os.path.join(SEEDS, "sf_campaign_member.csv")
+    with open(path) as fh:
+        reader = csv.DictReader(fh)
+        fields = reader.fieldnames
+        # Keep form-fill members and buying-committee members (contact only, no lead).
+        members = [m for m in reader
+                   if not (m["lead_id"] and m["campaign_id"] in program_ids.values())]
+    contact_of = {l["lead_id"]: l["contact_id"] for l in leads}
+    first = {}
+    for a in activities:
+        key = (a["program_name"], a["lead_id"])
+        if key not in first or a["activity_ts"] < first[key]:
+            first[key] = a["activity_ts"]
+    n = sum(1 for m in members)
+    for (program, lead_id), t in sorted(first.items(), key=lambda kv: kv[1]):
+        n += 1
+        members.append({
+            "id": f"00v8c{n:010d}QAB", "campaign_id": program_ids[program], "lead_id": lead_id,
+            "contact_id": contact_of.get(lead_id, ""), "status": "Responded", "has_responded": "true",
+            "first_responded_date": t, "created_date": t, "is_deleted": "false",
+            "_fivetran_synced": "2026-10-01 06:00:00",
+        })
+    with open(path, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=fields)
+        w.writeheader()
+        w.writerows(members)
+    print(f"wrote sf_campaign_member.csv: {len(members):,} rows (with Marketo program members)")
+
+
+def main():
+    leads, opp_at = read_leads()
 
     sessions, identities, activities = [], [], []
     counters = {"s": 0, "a": 0}
@@ -246,6 +303,8 @@ def main():
             w.writeheader()
             w.writerows(rows)
         print(f"wrote {name}: {len(rows):,} rows")
+
+    write_program_members(leads, activities)
 
 
 if __name__ == "__main__":
