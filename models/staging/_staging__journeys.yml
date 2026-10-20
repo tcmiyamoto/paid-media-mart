@@ -19,7 +19,7 @@ models:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_crm__leads')
+                to: ref('stg_salesforce__lead')
                 field: lead_id
 
   - name: stg_marketo__activities
@@ -32,7 +32,7 @@ models:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_crm__leads')
+                to: ref('stg_salesforce__lead')
                 field: lead_id
       - name: activity_type
         data_tests:

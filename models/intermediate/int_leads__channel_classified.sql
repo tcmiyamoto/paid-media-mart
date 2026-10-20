@@ -1,7 +1,7 @@
 -- Leads with a channel from the shared UTM mapping (same rules as signups), plus ad_platform
 -- so paid leads can join to dim_campaign.
 with leads as (
-    select * from {{ ref('stg_crm__leads') }}
+    select * from {{ ref('stg_salesforce__lead') }}
 ),
 
 channel_mapping as (

@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: fct_opportunities
+    description: "Accumulating snapshot, one row per opportunity: stage timestamps from stage history, days in each completed stage, sourced channel (Primary Campaign Source), buying committee size, and how many campaigns and channels influenced it."
+    columns:
+      - name: opportunity_id
+        data_tests: [unique, not_null]
+      - name: lead_id
+        description: "The lead the opportunity was converted from."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fct_leads')
+                field: lead_id
+      - name: sourced_channel_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_channel')
+                field: channel_key
+      - name: sourced_campaign_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_campaign')
+                field: campaign_key
+      - name: buying_committee_size
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 1
+      - name: days_to_close
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+
+  - name: rpt_pipeline_sourced_vs_influenced
+    description: "Sourced vs. influenced opportunities, pipeline, and won ARR by product line x channel. Sourced adds up to total pipeline; influenced does not, because one deal can be influenced by several channels."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [product_line, channel_name]

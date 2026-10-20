@@ -47,3 +47,23 @@ explore: lead_funnel {
     sql_on: ${lead_funnel.campaign_key} = ${dim_campaign.campaign_key} ;;
   }
 }
+
+# Opportunity pipeline: one row per opportunity, credited to the channel of its Primary
+# Campaign Source (sourced). Stage velocity measures use completed stages only.
+explore: pipeline {
+  from: fct_opportunities
+  label: "Pipeline"
+  description: "Sourced pipeline, win rate, and stage velocity by product line, segment, channel, and campaign."
+
+  join: dim_channel {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${pipeline.sourced_channel_key} = ${dim_channel.channel_key} ;;
+  }
+
+  join: dim_campaign {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${pipeline.sourced_campaign_key} = ${dim_campaign.campaign_key} ;;
+  }
+}

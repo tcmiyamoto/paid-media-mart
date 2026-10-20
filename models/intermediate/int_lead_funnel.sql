@@ -6,7 +6,7 @@ with leads as (
 ),
 
 events as (
-    select * from {{ ref('stg_crm__funnel_events') }}
+    select * from {{ ref('int_crm__funnel_events') }}
 ),
 
 stages as (

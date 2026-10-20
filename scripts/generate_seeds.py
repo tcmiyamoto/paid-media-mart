@@ -173,6 +173,9 @@ def main():
         ("bing", "organic", "Organic Search"),
         ("duckduckgo", "organic", "Organic Search"),
         ("newsletter", "email", "Email"),
+        # Marketo programs and their Salesforce campaigns classify through the same table.
+        ("marketo", "email", "Email"),
+        ("marketo", "webinar", "Events"),
     ]
 
     def write(name, rows, fields):
