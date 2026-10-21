@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: int_workspaces__channel_classified
+    description: "Non-internal workspaces with an acquisition channel from the shared channel_mapping seed and channel_from_utm rules."
+    columns:
+      - name: workspace_id
+        data_tests: [unique, not_null]
+      - name: channel
+        data_tests: [not_null]
+
+  - name: int_billing__line_item_mrr
+    description: "Recurring revenue per invoice line normalized to a monthly amount (net amount / months in the service period). Excludes void and uncollectible invoices, proration lines, and internal customers."
+    columns:
+      - name: line_item_id
+        data_tests: [unique, not_null]
+      - name: months_in_period
+        description: "1 for monthly lines, 12 for annual. Must be positive, or MRR would divide by zero."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 12]
+                quote: false
+
+  - name: int_customer_mrr_monthly
+    description: "Month-end MRR snapshot per paying workspace, from its first paid month through Sep 2026, zero-filled after churn. Split by product line, with the core plan tier and billing interval."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [workspace_id, mrr_month]
