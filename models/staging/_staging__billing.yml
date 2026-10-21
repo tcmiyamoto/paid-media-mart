@@ -1,0 +1,140 @@
+version: 2
+
+models:
+  - name: stg_stripe__products
+    description: "One row per Stripe product, with the product_line name the CRM uses."
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+      - name: product_line
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['core', 'new_product']
+
+  - name: stg_stripe__prices
+    description: "One row per Stripe price, amounts in dollars. plan_tier comes from lookup_key (core_<tier>_<interval>); sales-led contract prices have no lookup_key and get 'contract'."
+    columns:
+      - name: price_id
+        data_tests: [unique, not_null]
+      - name: product_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stripe__products')
+                field: product_id
+      - name: plan_tier
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['starter', 'growth', 'scale', 'pro', 'premium', 'contract']
+      - name: billing_interval
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['month', 'year']
+
+  - name: stg_stripe__customers
+    description: "One row per live Stripe customer. is_internal flags QA workspaces that bill real invoices. Billing email is hashed (email_hash) and the raw value dropped."
+    columns:
+      - name: stripe_customer_id
+        data_tests: [unique, not_null]
+
+  - name: stg_stripe__subscriptions
+    description: "One row per Stripe subscription. cancellation_reason is cancellation_requested (voluntary) or payment_failed (involuntary)."
+    columns:
+      - name: subscription_id
+        data_tests: [unique, not_null]
+      - name: stripe_customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stripe__customers')
+                field: stripe_customer_id
+      - name: cancellation_reason
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['cancellation_requested', 'payment_failed']
+
+  - name: stg_stripe__invoices
+    description: "One row per Stripe invoice, amounts in dollars, including void and uncollectible invoices."
+    columns:
+      - name: invoice_id
+        data_tests: [unique, not_null]
+      - name: invoice_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['paid', 'open', 'void', 'uncollectible']
+      - name: subscription_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_stripe__subscriptions')
+                field: subscription_id
+
+  - name: stg_stripe__invoice_line_items
+    description: "One row per invoice line, amounts in dollars: the price billed, coupon discount, net amount, and the service period covered."
+    columns:
+      - name: line_item_id
+        data_tests: [unique, not_null]
+      - name: invoice_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stripe__invoices')
+                field: invoice_id
+      - name: price_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stripe__prices')
+                field: price_id
+
+  - name: stg_app__workspaces
+    description: "One row per workspace in the product database: every trial since the CRM went live and every workspace that has ever paid. Carries the Salesforce and Stripe IDs written by provisioning syncs, and cleaned signup UTMs."
+    columns:
+      - name: workspace_id
+        data_tests: [unique, not_null]
+      - name: stripe_customer_id
+        data_tests:
+          - unique
+          - relationships:
+              arguments:
+                to: ref('stg_stripe__customers')
+                field: stripe_customer_id
+      - name: lead_id
+        data_tests:
+          - unique
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__lead')
+                field: lead_id
+      - name: account_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_salesforce__account')
+                field: account_id
+
+  - name: stg_app__workspace_usage_monthly
+    description: "Product usage per workspace per calendar month with a paid subscription: active users, user active days, reports created, connected data sources."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [workspace_id, usage_month]
+    columns:
+      - name: workspace_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_app__workspaces')
+                field: workspace_id

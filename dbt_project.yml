@@ -100,3 +100,32 @@ seeds:
     web_identities:
       +column_types:
         user_pseudo_id: string
+    # Billing (Stripe via Fivetran) and product database seeds for the revenue layer.
+    stripe_prices:
+      +column_types:
+        lookup_key: string
+        created: timestamp
+    stripe_subscriptions:
+      +column_types:
+        canceled_at: timestamp
+        ended_at: timestamp
+        cancellation_reason: string
+    stripe_invoices:
+      +column_types:
+        amount_due: int64
+        amount_paid: int64
+    stripe_invoice_line_items:
+      +column_types:
+        amount: int64
+        discount_amount: int64
+    app_workspaces:
+      +column_types:
+        created_at: timestamp
+        sfdc_lead_id: string
+        sfdc_account_id: string
+        stripe_customer_id: string
+        signup_utm_source: string
+        signup_utm_medium: string
+        signup_utm_campaign: string
+        segment_type: string
+        segment: string

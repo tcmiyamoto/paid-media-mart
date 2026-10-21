@@ -1,0 +1,117 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "One row per paying workspace. Keyed on the workspace because customers acquired before Salesforce went live exist only in billing and the product database. Motion comes from billing (contract price = sales-led), acquisition channel from the workspace's signup UTMs."
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: stripe_customer_id
+        data_tests: [unique, not_null]
+      - name: motion
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['plg', 'slg']
+      - name: channel_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_channel')
+                field: channel_key
+      - name: first_mrr
+        data_tests: [not_null]
+
+  - name: fct_mrr_movements
+    description: "One row per customer per month with MRR at the start or end of the month: new, expansion, contraction, churn, reactivation, or flat, with the driver of each expansion and contraction and the type of each churn."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [customer_id, mrr_month]
+    columns:
+      - name: mrr_movement_key
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_id
+      - name: movement_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['new', 'expansion', 'contraction', 'churn', 'reactivation', 'flat']
+      - name: change_driver
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['cross_sell', 'product_cancellation', 'tier_change', 'price']
+      - name: churn_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['voluntary', 'involuntary']
+
+  - name: rpt_mrr_monthly
+    description: "MRR bridge by month x motion (beginning, new, reactivation, expansion by driver, contraction, churn by type, ending), quick ratio, and trailing 12-month NRR and GRR with their numerators and denominators."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [mrr_month, motion]
+
+  - name: fct_customer_health_monthly
+    description: "One row per paying customer per month: usage, health score and band, and churn in the next three months (null where not yet observable)."
+    columns:
+      - name: customer_health_key
+        data_tests: [unique, not_null]
+      - name: health_score
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100
+      - name: health_band
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['healthy', 'watch', 'at_risk']
+
+  - name: rpt_health_backtest
+    description: "Churn in the next three months by sample (calibration through Dec 2025, holdout Jan-Jun 2026) x motion x health band."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [sample, motion, health_band]
+
+  - name: rpt_cohort_retention
+    description: "Logo and net MRR retention by first-payment quarter x motion x acquisition channel x months since first payment, keeping only months the whole cohort has reached."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [cohort_quarter, motion, acquisition_channel, months_since_first_paid]
+
+  - name: rpt_channel_ltv_cac
+    description: "By motion x acquisition channel: Jul-Sep 2026 CAC and incremental CAC, 12-month revenue and retention from Oct 2024-Sep 2025 cohorts, 12-month gross profit to CAC, and payback months."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [motion, acquisition_channel]
+
+  - name: rpt_crm_billing_reconciliation
+    description: "One row per lead won Jul-Sep 2026: CRM won ARR vs. ARR on the first invoice, with a reconciliation status (matched, promo_discount, annual_plan_discount, billed_below_crm, billed_above_crm, not_billed)."
+    columns:
+      - name: lead_id
+        data_tests: [unique, not_null]
+      - name: reconciliation_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['matched', 'promo_discount', 'annual_plan_discount', 'billed_below_crm', 'billed_above_crm', 'not_billed']
