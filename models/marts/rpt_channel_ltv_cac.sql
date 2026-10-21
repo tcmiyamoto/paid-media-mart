@@ -22,7 +22,7 @@ with cohort as (
       and m.months_since_first_paid <= 12
 ),
 
-value as (
+cohort_value as (
     select
         motion,
         acquisition_channel,
@@ -85,7 +85,7 @@ joined as (
         v.net_mrr_retention_m12,
         v.revenue_12m_per_customer,
         v.revenue_12m_per_customer * {{ margin }}                               as gross_profit_12m_per_customer
-    from value v
+    from cohort_value v
     left join acquisition a
         on  v.motion              = a.motion
         and v.acquisition_channel = a.acquisition_channel

@@ -3,7 +3,7 @@
 -- has reached are kept, so the latest point for each cohort is never a partial month.
 {% set last_month = "2026-09-01" %}
 
-with mrr as (
+with customer_months as (
     select
         m.*,
         c.motion,
@@ -25,7 +25,7 @@ select
     sum(mrr)                                            as mrr,
     round(avg(case when mrr > 0 then 1.0 else 0 end), 4) as logo_retention,
     round(sum(mrr) / nullif(sum(first_mrr), 0), 4)      as net_mrr_retention
-from mrr
+from customer_months
 where months_since_first_paid
       <= {{ dbt.datediff('cast(' ~ dbt.dateadd('month', 2, 'cohort_quarter') ~ ' as date)', "cast('" ~ last_month ~ "' as date)", 'month') }}
 group by 1, 2, 3, 4

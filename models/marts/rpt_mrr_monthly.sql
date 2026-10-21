@@ -33,7 +33,7 @@ bridge as (
     group by 1, 2
 ),
 
-mrr as (
+customer_months as (
     select m.workspace_id, m.mrr_month, m.mrr, c.motion
     from {{ ref('int_customer_mrr_monthly') }} m
     join {{ ref('dim_customer') }} c on m.workspace_id = c.customer_id
@@ -48,8 +48,8 @@ retention as (
         sum(case when now_.mrr < prior.mrr then now_.mrr else prior.mrr end) as grr_numerator,
         count(*)                                                    as customers_12m_ago,
         sum(case when now_.mrr > 0 then 1 else 0 end)               as customers_retained_12m
-    from mrr now_
-    join mrr prior
+    from customer_months now_
+    join customer_months prior
         on  now_.workspace_id = prior.workspace_id
         and prior.mrr_month   = cast({{ dbt.dateadd('month', -12, 'now_.mrr_month') }} as date)
         and prior.mrr > 0

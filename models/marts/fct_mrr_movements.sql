@@ -9,7 +9,7 @@
 --                         coupon ending. MRR is net of coupons, so a promo rolling off shows
 --                         up here rather than as tier expansion.
 -- Churn is involuntary when the customer's renewal invoice that month went uncollectible.
-with mrr as (
+with customer_months as (
     select * from {{ ref('int_customer_mrr_monthly') }}
 ),
 
@@ -20,7 +20,7 @@ lagged as (
         coalesce(lag(core_mrr)        over (partition by workspace_id order by mrr_month), 0) as beginning_core_mrr,
         coalesce(lag(new_product_mrr) over (partition by workspace_id order by mrr_month), 0) as beginning_new_product_mrr,
         lag(core_plan_tier)           over (partition by workspace_id order by mrr_month)     as beginning_plan_tier
-    from mrr
+    from customer_months
 ),
 
 uncollectible as (

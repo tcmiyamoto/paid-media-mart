@@ -6,7 +6,7 @@ with workspaces as (
     select * from {{ ref('int_workspaces__channel_classified') }}
 ),
 
-mrr as (
+customer_months as (
     select * from {{ ref('int_customer_mrr_monthly') }}
 ),
 
@@ -38,7 +38,7 @@ first_month as (
         mrr                                                 as first_mrr,
         case when core_mrr > 0 then 'core' else 'new_product' end as first_product_line,
         core_plan_tier                                      as first_plan_tier
-    from mrr
+    from customer_months
     where months_since_first_paid = 0
 ),
 
@@ -50,7 +50,7 @@ lifetime as (
         max(case when new_product_mrr > 0 then 1 else 0 end) = 1                       as has_had_new_product,
         sum(case when mrr > 0 then 1 else 0 end)                                       as months_paid,
         max(case when mrr > 0 then mrr_month end)                                      as last_paid_month
-    from mrr
+    from customer_months
     group by 1
 )
 
