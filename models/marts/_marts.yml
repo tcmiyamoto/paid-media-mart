@@ -71,3 +71,17 @@ models:
     columns:
       - name: channel_name
         data_tests: [not_null]
+
+  - name: rpt_channel_daily
+    description: Daily spend, signups, and revenue by channel. Feeds the Tableau scorecard.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - report_date
+              - channel_name
+    columns:
+      - name: report_date
+        data_tests: [not_null]
+      - name: channel_name
+        data_tests: [not_null]
