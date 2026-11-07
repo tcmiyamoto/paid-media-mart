@@ -108,7 +108,7 @@ flowchart LR
 | `fct_ad_spend` | date x campaign | FKs `campaign_key`, `channel_key` |
 | `fct_signups` | one row per signup | FKs `channel_key`, `campaign_key` (null for non-paid); `is_paid_plan` flag |
 | `rpt_channel_weekly` | week x channel | spend, signups, paid-plan signups, revenue, cost per signup, ROAS |
-| `rpt_channel_daily` | date x channel | additive measures (spend, signups, leads, customers won) for the dashboard |
+| `rpt_channel_daily` | date x channel x motion | additive measures (spend, signups, leads, customers won, new ARR) for the dashboard |
 | `int_incrementality_factors` | one row per test | factor, confidence range, validity window |
 | `fct_channel_incremental_cac` | week x paid channel | attributed vs. incremental signups and CAC |
 | `fct_leads` | one row per lead | motion, product line, segment, stage timestamps, pipeline, won ARR |
