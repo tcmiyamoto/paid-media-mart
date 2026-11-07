@@ -85,18 +85,29 @@ models:
 
   - name: rpt_channel_daily
     description: >
-      Daily spend, signups, leads, and customers won by channel. Additive measures only; compute
-      CAC (spend / customers_won), cost per signup, and ROAS as ratios of sums in the BI tool.
+      Daily spend, signups, leads, customers won, and new ARR by channel and motion. Additive
+      measures only; compute CAC (spend / customers_won), CAC payback, cost per signup, and ROAS
+      as ratios of sums in the BI tool.
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns:
               - report_date
               - channel_name
+              - motion
     columns:
       - name: report_date
         data_tests: [not_null]
       - name: channel_name
         data_tests: [not_null]
+      - name: motion
+        description: plg or slg from the campaign or lead; 'unassigned' for signups with no campaign.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['plg', 'slg', 'unassigned']
       - name: customers_won
         description: Leads won, counted on the lead's created date (cohort view), matching rpt_funnel_monthly.won.
+      - name: new_arr
+        description: ARR at win for those customers, matching rpt_funnel_monthly.won_arr. Contracted for SLG; MRR x 12 for PLG.
