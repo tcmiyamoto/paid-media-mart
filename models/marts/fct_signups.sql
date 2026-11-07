@@ -13,6 +13,7 @@ select
     c.campaign_key,
     {{ dbt_utils.generate_surrogate_key(['s.channel']) }} as channel_key,
     s.plan,
+    s.plan != 'free' as is_paid_plan,
     s.revenue
 from signups s
 left join campaigns c

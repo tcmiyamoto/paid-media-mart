@@ -1,7 +1,7 @@
 # Paid Media Performance Mart
 
 A dbt + BigQuery project that unifies ad spend from Google Ads, Meta, and LinkedIn with
-UTM-attributed signups in a star schema, and reports CAC and ROAS by channel and week. Later layers
+UTM-attributed signups in a star schema, and reports cost per signup and ROAS by channel and week. Later layers
 follow the customer from first touch through Salesforce pipeline to billing: MRR, net revenue
 retention, a usage-based health score, and lifetime value by acquisition channel.
 
@@ -106,8 +106,9 @@ flowchart LR
 | `dim_channel` | one row per channel | `channel_key` |
 | `dim_campaign` | one row per platform campaign | `campaign_key`, FK `channel_key` |
 | `fct_ad_spend` | date x campaign | FKs `campaign_key`, `channel_key` |
-| `fct_signups` | one row per signup | FKs `channel_key`, `campaign_key` (null for non-paid) |
-| `rpt_channel_weekly` | week x channel | spend, signups, revenue, CAC, ROAS |
+| `fct_signups` | one row per signup | FKs `channel_key`, `campaign_key` (null for non-paid); `is_paid_plan` flag |
+| `rpt_channel_weekly` | week x channel | spend, signups, paid-plan signups, revenue, cost per signup, ROAS |
+| `rpt_channel_daily` | date x channel | additive measures (spend, signups, leads, customers won) for the dashboard |
 | `int_incrementality_factors` | one row per test | factor, confidence range, validity window |
 | `fct_channel_incremental_cac` | week x paid channel | attributed vs. incremental signups and CAC |
 | `fct_leads` | one row per lead | motion, product line, segment, stage timestamps, pipeline, won ARR |
@@ -172,12 +173,12 @@ adjusts attributed numbers with results from incrementality tests, following the
    conversions from the test and attributed conversions over the same period.
 2. **Factors** (`int_incrementality_factors`): factor = incremental / attributed. Each factor
    applies from its test's end date until the next test on that channel ends.
-3. **Incremental CAC** (`fct_channel_incremental_cac`): weekly attributed signups x the factor
+3. **Incremental cost per signup** (`fct_channel_incremental_cac`): weekly attributed signups x the factor
    valid that week, with a range from the test's confidence interval. Each row is flagged
    `current`, `stale` (past its re-test date), or `untested` (incremental columns left null,
    not guessed).
 
-| Channel | Spend | Attributed CAC | Incremental CAC | Factor | Status |
+| Channel | Spend | Attributed cost per signup | Incremental cost per signup | Factor | Status |
 |---|---:|---:|---:|---:|---|
 | Paid Search | $168,847 | $112 | $173 | 0.65 | current |
 | Paid Social - Meta | $106,705 | $119 | $358 | 0.33 | current |
@@ -550,14 +551,17 @@ per spend dollar.
 
 ## Results (Jul 1 to Sep 30, 2026)
 
-| Channel | Spend | Signups | CAC |
-|---|---:|---:|---:|
-| Paid Search | $168,847 | 1,502 | $112 |
-| Paid Social - Meta | $106,705 | 894 | $119 |
-| Paid Social - LinkedIn | $76,058 | 275 | $277 |
-| **Blended paid** | **$351,610** | **2,671** | **$132** |
+| Channel | Spend | Signups | Paid-plan signups | Cost per signup |
+|---|---:|---:|---:|---:|
+| Paid Search | $168,847 | 1,502 | 469 | $112 |
+| Paid Social - Meta | $106,705 | 894 | 273 | $119 |
+| Paid Social - LinkedIn | $76,058 | 275 | 79 | $277 |
+| **Blended paid** | **$351,610** | **2,671** | **821** | **$132** |
 
-ROAS uses first-month plan revenue only, so it understates lifetime return.
+Cost per signup is not CAC: 69% of paid-channel signups start on the free plan. CAC in this
+project means spend per customer won (`rpt_funnel_monthly`, `rpt_channel_ltv_cac`); see
+**Channel economics** for self-serve CAC by channel. ROAS uses first-month plan revenue only,
+so it understates lifetime return.
 
 ## CI/CD: slim CI with dbt state
 

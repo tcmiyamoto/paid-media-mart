@@ -66,14 +66,27 @@ models:
               arguments:
                 to: ref('dim_campaign')
                 field: campaign_key
+      - name: plan
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['free', 'starter', 'pro']
+      - name: is_paid_plan
+        description: True when the user picked a paid plan (starter or pro) at signup. Not the same as a customer won; see fct_leads.is_won.
+        data_tests: [not_null]
 
   - name: rpt_channel_weekly
     columns:
       - name: channel_name
         data_tests: [not_null]
+      - name: cost_per_signup
+        description: Spend / all signups. Not CAC, since most signups are on the free plan.
 
   - name: rpt_channel_daily
-    description: Daily spend, signups, and revenue by channel. Feeds the Tableau scorecard.
+    description: >
+      Daily spend, signups, leads, and customers won by channel. Additive measures only; compute
+      CAC (spend / customers_won), cost per signup, and ROAS as ratios of sums in the BI tool.
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
@@ -85,3 +98,5 @@ models:
         data_tests: [not_null]
       - name: channel_name
         data_tests: [not_null]
+      - name: customers_won
+        description: Leads won, counted on the lead's created date (cohort view), matching rpt_funnel_monthly.won.
