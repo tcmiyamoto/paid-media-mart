@@ -1,0 +1,30 @@
+
+version: 2
+
+models:
+  - name: stg_crm_leads
+    columns:
+      - name: lead_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: stg_crm_opportunities
+    columns:
+      - name: opportunity_id
+        data_tests:
+          - not_null
+          - unique
+      - name: lead_id
+        data_tests:
+          - not_null
+
+  - name: stg_marketing_touchpoints
+    columns:
+      - name: touchpoint_id
+        data_tests:
+          - not_null
+          - unique
+      - name: anonymous_id
+        data_tests:
+          - not_null

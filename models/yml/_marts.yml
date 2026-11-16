@@ -1,0 +1,99 @@
+version: 2
+
+models:
+  - name: fct_paid_media_daily
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "concat(cast(date as string), '|', platform, '|', cast(campaign_id as string))"
+    columns:
+      - name: campaign_id
+        data_tests:
+          - not_null
+      - name: date
+        data_tests:
+          - not_null
+      - name: platform
+        data_tests:
+          - not_null
+      - name: campaign_key
+        description: "Foreign key to dim_campaign."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_campaign')
+                field: campaign_key
+
+  - name: fct_unified_revenue_attribution
+    description: >
+      Opportunity revenue allocated across marketing touchpoints
+      using first-touch, last-touch, and linear attribution.
+      Grain: one row per opportunity, attribution model, and touchpoint.
+    columns:
+      - name: opportunity_id
+        description: "Unique identifier for the CRM opportunity."
+        data_tests:
+          - not_null
+
+      - name: attribution_model
+        description: "Attribution methodology used to allocate revenue."
+        data_tests:
+          - not_null
+
+      - name: touchpoint_id
+        description: "Unique identifier for the marketing touchpoint."
+        data_tests:
+          - not_null
+
+      - name: attributed_revenue
+        description: "Portion of closed-won opportunity revenue credited to this touchpoint."
+
+  - name: fct_campaign_attributed_revenue_daily
+    description: >
+      Daily campaign-level attributed revenue across first-touch,
+      last-touch, and linear attribution models.
+      Grain: one row per date, platform, campaign, and attribution model.
+      Revenue is assigned to the marketing touchpoint date.
+    columns:
+      - name: date
+        description: "Date of the marketing touchpoint."
+
+      - name: campaign_key
+        description: "Foreign key to dim_campaign."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_campaign')
+                field: campaign_key
+
+      - name: platform
+        description: "Advertising platform associated with the touchpoint."
+
+      - name: campaign_id
+        description: "Identifier of the credited marketing campaign."
+
+      - name: attribution_model
+        description: "Attribution model used to allocate revenue."
+
+      - name: attributed_revenue
+        description: "Total revenue credited to the campaign under the selected attribution model."
+
+  - name: obt_marketing_performance_daily
+    description: "Reporting-ready daily campaign performance by attribution model."
+    columns:
+      - name: campaign_name
+        data_tests:
+          - not_null
+
+  - name: fct_campaign_attributed_leads_daily
+    description: "Lead conversions cohorted by lead creation date and credited by attribution model."
+    columns:
+      - name: campaign_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_campaign')
+                field: campaign_key

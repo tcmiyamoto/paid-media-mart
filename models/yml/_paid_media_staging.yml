@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_google_ads
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "concat(cast(date as string),'|', cast(campaign_id as string))"
+    columns:
+      - name: campaign_id
+        data_tests:
+          - not_null
+      - name: date
+        data_tests:
+          - not_null
+
+
+  - name: stg_meta_ads
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "concat(cast(date as string),'|', cast(campaign_id as string))"
+    columns:
+      - name: campaign_id
+        data_tests:
+          - not_null
+      - name: date
+        data_tests:
+          - not_null

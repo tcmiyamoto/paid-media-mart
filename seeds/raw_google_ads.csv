@@ -1,0 +1,5 @@
+date,campaignId,campaignName,spend_micros,impressions,clicks,conversions
+2026-11-01,101,Brand Search,500000000,10000,500,50
+2026-11-01,102,Nonbrand Search,750000000,15000,600,30
+2026-11-02,101,Brand Search,450000000,9000,450,45
+2026-11-02,102,Nonbrand Search,800000000,16000,650,35

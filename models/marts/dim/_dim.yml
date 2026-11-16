@@ -1,0 +1,35 @@
+
+version: 2
+
+models:
+  - name: dim_campaign
+    description: "One row per unique platform and campaign."
+
+    columns:
+      - name: campaign_key
+        description: "Surrogate key generated from platform and campaign_id."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: platform
+        data_tests:
+          - not_null
+
+      - name: campaign_id
+        data_tests:
+          - not_null
+
+  - name: dim_channel
+    description: "One row per standardized marketing channel."
+
+    columns:
+      - name: channel_key
+        data_tests:
+          - unique
+          - not_null
+
+      - name: channel_name
+        data_tests:
+          - unique
+          - not_null
