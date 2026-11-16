@@ -2,40 +2,37 @@
 
 **Problem:** Marketing spend, leads, and revenue live in separate systems, making campaign-level reporting and attribution difficult to reconcile.
 
-**Solution:** Built a dbt pipeline in BigQuery combining Google Ads, Meta Ads, and CRM data into a unified marketing performance mart with first-touch, last-touch, and linear attribution.
+**Solution:** Built a dbt analytics mart in BigQuery combining Google Ads, Meta Ads, and CRM data into unified campaign performance reporting with first-touch, last-touch, and linear attribution.
 
 Built with **synthetic data** for portfolio demonstration. No real company data.
 
 ## Architecture
 
-```text
-Synthetic CSV Seeds (Ads + CRM)
-             ↓
-       Staging Models
-             ↓
-    Intermediate Models
-   (Unification + Attribution)
-             ↓
-     Dimensions + Facts
-             ↓
-  Marketing Performance OBT
-```
+![dbt Model Lineage](docs/dbt-dag.png)
+
+The project follows a layered dbt architecture:
+
+- **Staging:** Standardizes advertising, CRM, and marketing touchpoint data.
+- **Intermediate:** Unifies paid media and calculates attribution weights.
+- **Dimensions:** Defines consistent campaign and channel identifiers.
+- **Facts:** Models advertising spend, attributed leads, and attributed revenue.
+- **Final mart:** Combines performance metrics into a reporting-ready table.
 
 The final reporting table combines spend, impressions, clicks, attributed leads, and closed-won revenue at the **date × campaign × attribution model** grain.
 
-## Key modeling decisions
+## Key Modeling Decisions
 
 | Decision | Why it matters |
 |---|---|
 | Composite campaign key | Prevents campaign ID collisions across platforms |
 | Explicit model grains | Prevents duplicate metrics from joins |
-| First, last, and linear attribution | Supports comparison of different credit assignment methods |
+| First, last, and linear attribution | Supports comparison of credit assignment methods |
 | Lead creation cohorts | Aligns attributed leads and revenue to acquisition date |
 | Full outer joins | Preserves attributed activity without matching spend |
 
 Spend remains on its actual advertising date and is repeated across attribution models. Reports must filter to one attribution model before summing spend.
 
-## Data quality
+## Data Quality
 
 **75/75 dbt build steps passed:** 18 models, 52 tests, and 5 seeds.
 
@@ -49,7 +46,7 @@ During development, reconciliation tests caught missing attributed leads in the 
 - Rule-based attribution measures assigned credit, not causal incrementality.
 - No production orchestration or incremental processing.
 
-## Run it
+## Run It
 
 Requires dbt Core, dbt-bigquery, and configured BigQuery credentials.
 
