@@ -1,0 +1,44 @@
+
+name: dbt CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  dbt-compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dbt
+        run: pip install dbt-bigquery
+
+      - name: Install dbt packages
+        run: dbt deps
+
+      - name: Create CI dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<'EOF'
+          paid_media_mart:
+            target: ci
+            outputs:
+              ci:
+                type: bigquery
+                method: oauth
+                project: placeholder-ci-project
+                dataset: dbt_ci
+                threads: 1
+          EOF
+
+      - name: Parse dbt project
+        run: dbt parse
