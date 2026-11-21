@@ -4,6 +4,11 @@ with paid_media as (
     from {{ ref('int_paid_media_unified') }}
 ),
 
+channels as (
+    select *
+    from {{ ref('dim_channel') }}
+),
+
 campaigns as (
     select
         platform,
@@ -17,25 +22,24 @@ campaigns as (
 ),
 
 final as (
-
     select
-        {{ dbt_utils.generate_surrogate_key(['platform', 'campaign_id']) }}
-            as campaign_key,
-
         {{ dbt_utils.generate_surrogate_key([
-            "case
-                when platform = 'google' then 'Paid Search'
-                when platform = 'meta' then 'Paid Social - Meta'
-            end"
-        ]) }} as channel_key,
+            'c.platform',
+            'c.campaign_id'
+        ]) }} as campaign_key,
 
-        platform,
-        campaign_id,
-        campaign_name
+        ch.channel_key,
+        c.platform,
+        c.campaign_id,
+        c.campaign_name
 
-    from campaigns
-    where rn = 1
-
+    from campaigns c
+    left join channels ch
+        on ch.channel_name = case
+            when c.platform = 'google' then 'Paid Search'
+            when c.platform = 'meta' then 'Paid Social - Meta'
+        end
+    where c.rn = 1
 )
 
 select * from final
