@@ -25,5 +25,20 @@ jobs:
       - name: Install dbt packages
         run: dbt deps
 
+      - name: Create CI dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<'EOF'
+          paid_media_mart:
+            target: ci
+            outputs:
+              ci:
+                type: bigquery
+                method: oauth
+                project: placeholder-ci-project
+                dataset: dbt_ci
+                threads: 1
+          EOF
+
       - name: Parse dbt project
         run: dbt parse
